@@ -11,7 +11,9 @@ def textarea():
 
 @app.route("/", methods=["POST"])
 def textarea_post():
-    return f"You entered {request.form['text']}"
+    return render_template(
+        "index.html", submit_text=f"noh noh {request.form['text']}"
+    )
 
 
 if __name__ == "__main__":
