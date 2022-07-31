@@ -33,7 +33,7 @@ body {
   width: 100%;
   height: 20rem;
 
-  background-color: #ddd;
+  background-color: #fcf6f5ff;
   padding: 2rem;
   border-radius: 1rem;
   border: 2px solid transparent;
@@ -55,5 +55,37 @@ body {
   cursor: text;
   color: #333;
   background-color: white;
-  border-color: #333;
+  border-color: #990011ff;
+}
+
+/* Submit button  */
+
+.submit-container {
+  display: grid;
+}
+
+.submit-button {
+  margin: 3.2rem auto;
+  background: none;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #990011ff;
+  padding: 2.4rem;
+  border: 1px solid;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.submit-button:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.04);
+}
+
+/* Return text */
+
+.return-text {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.4;
 }
