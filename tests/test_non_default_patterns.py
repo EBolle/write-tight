@@ -3,7 +3,7 @@ import re
 
 import pytest
 
-from write_tight.src.non_default_patterns import passive_voice
+from writetight.src.non_default_patterns import passive_voice
 
 
 @pytest.mark.parametrize(
