@@ -3,7 +3,7 @@ straightforward implementation.
 """
 import re
 
-from write_tight.src.pattern import Pattern
+from writetight.src.pattern import Pattern
 
 
 class DefaultPattern(Pattern):

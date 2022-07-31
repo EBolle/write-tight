@@ -5,7 +5,7 @@ import re
 
 from nltk.corpus import wordnet as wn  # type: ignore
 
-from write_tight.src.pattern import Pattern
+from writetight.src.pattern import Pattern
 
 
 class PassiveVoicePattern(Pattern):
