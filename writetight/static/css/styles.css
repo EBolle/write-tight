@@ -94,3 +94,22 @@ body {
   font-size: 2rem;
   line-height: 1.4;
 }
+
+.ambiguous-openings {
+  color: #ffd8b1;
+}
+
+.ambiguous-pronouns {
+  color: #fabed4;
+}
+
+.passive-voice {
+  color: #fffac8;
+}
+.subjunctive-mood {
+  color: #42d4f4;
+}
+
+.words-ending-with-ly {
+  color: #ffd8b1;
+}
