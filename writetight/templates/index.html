@@ -22,10 +22,13 @@
       </div>
     </form>
     <p class="return-text">{{ submit_text }}</p>
-    <p class="pattern-explanations">
-      <span class="passive-voice">Passive voice:</span> Was reading, is
-      happening, are reading. A to be verb followed by a verb is an indicator of
-      passive voice. Try to write 90% of your document in active voice.
-    </p>
+    <div class="pattern-explanations">
+      <p class="passive-voice-exp">
+        <span class="passive-voice">Passive voice:</span> Was reading, is
+        happening, are reading. A to be verb followed by a verb is an indicator
+        of passive voice. Try to write 90% of your document in active voice.
+      </p>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

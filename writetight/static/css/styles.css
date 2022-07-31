@@ -29,6 +29,11 @@ body {
   --color-secundary: #ee4e34;
 }
 
+span {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
 /* Textarea  */
 
 .textarea {
@@ -99,11 +104,6 @@ body {
   border-bottom: 2px solid #ddd;
 }
 
-.return-text span {
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
 .ambiguous-openings {
   color: purple;
 }
@@ -125,6 +125,10 @@ body {
 }
 
 /* Pattern explanations  */
+
+.hide {
+  display: none;
+}
 
 .pattern-explanations {
   padding-top: 3.2rem;
