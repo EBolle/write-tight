@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from markupsafe import Markup
+from markupsafe import escape, Markup
 
 from writetight.src.default_patterns import (
     ambiguous_pronouns,
@@ -29,11 +29,8 @@ def textarea():
 
 @app.route("/", methods=["POST"])
 def textarea_post():
-    """Be very careful with the markupsafe option. You first need to eliminate
-    all HTML characters, and only return your own HTML as safe.
-    """
     text_input = request.form["text"]
-    text_output = text_input  # test escape to prevent HTML injection
+    text_output = escape(text_input)
 
     for pattern in patterns:
         text_output = pattern.match_and_replace(text_output)

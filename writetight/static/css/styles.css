@@ -136,3 +136,7 @@ span {
   font-size: 2rem;
   line-height: 1.4;
 }
+
+.pattern-explanations p {
+  padding: 1rem;
+}
