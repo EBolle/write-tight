@@ -24,6 +24,11 @@ body {
   margin: 0 auto;
 }
 
+:root {
+  --color-primary: #fcedda;
+  --color-secundary: #ee4e34;
+}
+
 /* Textarea  */
 
 .textarea {
@@ -33,7 +38,7 @@ body {
   width: 100%;
   height: 20rem;
 
-  background-color: #fcf6f5ff;
+  background-color: var(--color-primary);
   padding: 2rem;
   border-radius: 1rem;
   border: 2px solid transparent;
@@ -55,7 +60,7 @@ body {
   cursor: text;
   color: #333;
   background-color: white;
-  border-color: #990011ff;
+  border-color: var(--color-secundary);
 }
 
 /* Submit button  */
@@ -69,7 +74,7 @@ body {
   background: none;
   font-size: 2.4rem;
   font-weight: 600;
-  color: #990011ff;
+  color: var(--color-secundary);
   padding: 2.4rem;
   border: 1px solid;
   border-radius: 3rem;
