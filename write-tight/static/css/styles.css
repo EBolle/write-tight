@@ -1,0 +1,96 @@
+/* General settings  */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* font-size: 10px; */
+  /* Default = 16px, 62.5% = 10px, easy to calculate with */
+  /* Percentage of user's browser font-size setting */
+  font-size: 62.5%;
+  /* Only works for Firefox and Chrome, not on Safari or Microsoft Edge */
+  /* scroll-behavior: smooth; */
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: #fff;
+
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+:root {
+  --color-primary: #fcedda;
+  --color-secundary: #ee4e34;
+}
+
+/* Textarea  */
+
+.textarea {
+  display: block;
+  margin-top: 20rem;
+
+  width: 100%;
+  height: 20rem;
+
+  background-color: var(--color-primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  outline: none;
+
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.4;
+
+  transition: all 0.5s;
+}
+
+.textarea:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.textarea:focus {
+  cursor: text;
+  color: #333;
+  background-color: white;
+  border-color: var(--color-secundary);
+}
+
+/* Submit button  */
+
+.submit-container {
+  display: grid;
+}
+
+.submit-button {
+  margin: 3.2rem auto;
+  background: none;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--color-secundary);
+  padding: 2.4rem;
+  border: 1px solid;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.submit-button:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.04);
+}
+
+/* Return text */
+
+.return-text {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.4;
+}
