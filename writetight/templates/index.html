@@ -11,16 +11,24 @@
     <title>Better writing with write-tight.</title>
   </head>
   <body>
-    <h1>Welcome to write-tight</h1>
     <form action="{{ url_for('textarea_post') }}" method="post">
       <textarea
         name="text"
         class="textarea"
         placeholder="Please enter your text here.."
-      >
-{{ submit_text }}</textarea
-      >
-      <input type="submit" />
+      ></textarea>
+      <div class="submit-container">
+        <input class="submit-button" type="submit" />
+      </div>
     </form>
+    <p class="return-text">{{ submit_text }}</p>
+    <div class="pattern-explanations">
+      <p class="passive-voice-exp">
+        <span class="passive-voice">Passive voice:</span> Was reading, is
+        happening, are reading. A to be verb followed by a verb is an indicator
+        of passive voice. Try to write 90% of your document in active voice.
+      </p>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>
