@@ -146,7 +146,7 @@ span {
 }
 
 .words-ending-with-ly {
-  color: red;
+  color: orange;
 }
 
 /* Pattern explanations  */
@@ -164,4 +164,13 @@ span {
 
 .pattern-explanations p {
   padding: 1rem;
+}
+
+/* No patterns warning  */
+
+.no-patterns {
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 2rem;
+  color: red;
 }

@@ -7,6 +7,7 @@ const patternExps = document.querySelector(".pattern-explanations");
 const refreshButton = document.querySelector(".refresh-button");
 const returnText = document.querySelector(".return-text");
 const submitButton = document.querySelector(".submit-button");
+const noPatterns = document.querySelector(".no-patterns");
 
 // Variables
 
@@ -21,8 +22,12 @@ const patterns = [
 // Hide the form when returnText is visible [this finally works!, now make it neat and add a REFRESH button]
 
 const hideForm = function () {
+  noPatterns.classList.add("hide");
   if (returnText.textContent) {
     form.classList.add("hide");
+    if (returnText.querySelectorAll("span").length === 0) {
+      noPatterns.classList.remove("hide");
+    }
   } else {
     setTimeout(hideForm, 300);
   }
@@ -53,6 +58,7 @@ returnText.addEventListener("mouseover", function (event) {
 refreshButton.addEventListener("click", function (event) {
   form.classList.remove("hide");
   returnText.textContent = "";
+  noPatterns.classList.add("hide");
 
   hideExplanations();
 });
