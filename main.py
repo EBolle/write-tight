@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from flask import Flask, render_template, request
 from markupsafe import escape, Markup
 
@@ -17,9 +19,11 @@ patterns = [
     subjunctive_mood,
     passive_voice,
 ]
+TEMPLATE_PATH = Path(".") / "writetight" / "templates"
+STATIC_PATH = Path(".") / "writetight" / "static"
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=TEMPLATE_PATH, static_folder=STATIC_PATH)  # type: ignore
 
 
 @app.route("/")

@@ -7,12 +7,8 @@
 }
 
 html {
-  /* font-size: 10px; */
   /* Default = 16px, 62.5% = 10px, easy to calculate with */
-  /* Percentage of user's browser font-size setting */
   font-size: 62.5%;
-  /* Only works for Firefox and Chrome, not on Safari or Microsoft Edge */
-  /* scroll-behavior: smooth; */
 }
 
 body {
@@ -34,11 +30,34 @@ span {
   font-weight: 700;
 }
 
+/* Top section */
+
+.top-section {
+  margin-top: 10rem;
+}
+
+.refresh-button {
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.refresh-button ion-icon {
+  height: 4rem;
+  width: 4rem;
+  color: var(--color-secundary);
+  transition: all 0.5s;
+}
+
+.refresh-button:hover ion-icon {
+  color: #555;
+}
+
 /* Textarea  */
 
 .textarea {
   display: block;
-  margin-top: 10rem;
 
   width: 100%;
   height: 20rem;
@@ -49,6 +68,7 @@ span {
   border: 2px solid transparent;
   outline: none;
 
+  font-family: inherit;
   font-weight: 500;
   font-size: 2rem;
   line-height: 1.4;
@@ -85,7 +105,6 @@ span {
   border-radius: 3rem;
   cursor: pointer;
   transition: all 0.5s;
-  /* background-color: var(--color-primary); */
 }
 
 .submit-button:hover {
@@ -96,13 +115,19 @@ span {
 /* Return text */
 
 .return-text {
+  padding: 2rem;
+  border: 2px solid transparent;
+  outline: none;
+
   font-weight: 500;
   font-size: 2rem;
   line-height: 1.4;
-  padding-bottom: 3.2rem;
+  color: #333;
 
   border-bottom: 2px solid #ddd;
 }
+
+/* Pattern colors */
 
 .ambiguous-openings {
   color: purple;

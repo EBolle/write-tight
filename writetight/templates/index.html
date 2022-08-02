@@ -11,17 +11,22 @@
     <title>Better writing with write-tight.</title>
   </head>
   <body>
-    <form action="{{ url_for('textarea_post') }}" method="post">
-      <textarea
-        name="text"
-        class="textarea"
-        placeholder="Please enter your text here.."
-      ></textarea>
-      <div class="submit-container">
-        <input class="submit-button" type="submit" />
-      </div>
-    </form>
-    <p class="return-text">{{ submit_text }}</p>
+    <div class="top-section">
+      <button class="refresh-button">
+        <span><ion-icon name="refresh-outline"></ion-icon></span>
+      </button>
+      <form action="{{ url_for('textarea_post') }}" method="post">
+        <textarea
+          name="text"
+          class="textarea"
+          placeholder="Please enter your text here.."
+        ></textarea>
+        <div class="submit-container">
+          <input class="submit-button" type="submit" />
+        </div>
+      </form>
+      <p class="return-text">{{ submit_text }}</p>
+    </div>
     <div class="pattern-explanations">
       <p class="ambiguous-openings-exp">
         <span class="ambiguous-openings">Ambiguous openings:</span>
@@ -51,5 +56,13 @@
       </p>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
