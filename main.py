@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from flask import Flask, render_template, request
@@ -35,6 +36,7 @@ def textarea():
 def textarea_post():
     text_input = request.form["text"]
     text_output = escape(text_input)
+    text_output = re.sub(r"\n", "</br>", text_output)
 
     for pattern in patterns:
         text_output = pattern.match_and_replace(text_output)
