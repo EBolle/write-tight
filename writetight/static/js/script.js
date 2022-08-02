@@ -4,6 +4,7 @@
 
 const form = document.querySelector("form");
 const patternExps = document.querySelector(".pattern-explanations");
+const refreshButton = document.querySelector(".refresh-button");
 const returnText = document.querySelector(".return-text");
 const submitButton = document.querySelector(".submit-button");
 
@@ -32,9 +33,13 @@ hideForm();
 
 // Reveal pattern explanation on mouseover
 
-patternExps.querySelectorAll("p").forEach(function (element) {
-  element.classList.add("hide");
-});
+const hideExplanations = function () {
+  patternExps.querySelectorAll("p").forEach(function (element) {
+    element.classList.add("hide");
+  });
+};
+
+hideExplanations();
 
 returnText.addEventListener("mouseover", function (event) {
   const classValue = event.target.classList.value;
@@ -42,4 +47,13 @@ returnText.addEventListener("mouseover", function (event) {
   if (patterns.includes(classValue)) {
     patternExps.querySelector(`.${classValue}-exp`).classList.remove("hide");
   }
+});
+
+// Reset on click refresh-button
+
+refreshButton.addEventListener("click", function (event) {
+  form.classList.remove("hide");
+  returnText.textContent = "";
+
+  hideExplanations();
 });
