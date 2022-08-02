@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<div class="top-section">
+  <p class="return-text">{{ submit_text }}</p>
+</div>
+<div class="pattern-explanations">
+  <p class="ambiguous-openings-exp">
+    <span class="ambiguous-openings">Ambiguous openings:</span>
+    there was, It were, It was. These sentence openings are vague. The more
+    specific your writing, the more authority your document will have.
+  </p>
+  <p class="ambiguous-pronouns-exp">
+    <span class="ambiguous-pronouns">Ambiguous pronouns:</span>
+    it, these, those, and that are vague. The more precise your writing, the
+    better.
+  </p>
+  <p class="passive-voice-exp">
+    <span class="passive-voice">Passive voice:</span> was reading, is happening,
+    are reading. A to be verb followed by a verb is an indicator of passive
+    voice. Try to write 90% of your document in active voice.
+  </p>
+  <p class="subjunctive-mood-exp">
+    <span class="subjunctive-mood">Subjunctive mood:</span>
+    would of, should of, could of. Besides sounding weak, subjunctive mood can
+    also suggest a condition when it is not present. This can cause confusion.
+  </p>
+  <p class="words-ending-with-ly-exp">
+    <span class="words-ending-with-ly">Words that end with ly:</span>
+    basically, usually, normally. These words can <em>usually</em> be removed
+    from your document without losing any meaning.
+  </p>
+</div>
+<p class="no-patterns">
+  <span>No patterns found:</span> please see the documentation for currently
+  supported patterns.
+</p>
+
+{% endblock %}
