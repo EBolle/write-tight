@@ -7,12 +7,8 @@
 }
 
 html {
-  /* font-size: 10px; */
   /* Default = 16px, 62.5% = 10px, easy to calculate with */
-  /* Percentage of user's browser font-size setting */
   font-size: 62.5%;
-  /* Only works for Firefox and Chrome, not on Safari or Microsoft Edge */
-  /* scroll-behavior: smooth; */
 }
 
 body {
@@ -72,6 +68,7 @@ span {
   border: 2px solid transparent;
   outline: none;
 
+  font-family: inherit;
   font-weight: 500;
   font-size: 2rem;
   line-height: 1.4;
@@ -118,14 +115,19 @@ span {
 /* Return text */
 
 .return-text {
+  padding: 2rem;
+  border: 2px solid transparent;
+  outline: none;
+
   font-weight: 500;
   font-size: 2rem;
   line-height: 1.4;
-  padding-bottom: 3.2rem;
-  /* margin-top: 10rem; */
+  color: #333;
 
   border-bottom: 2px solid #ddd;
 }
+
+/* Pattern colors */
 
 .ambiguous-openings {
   color: purple;
