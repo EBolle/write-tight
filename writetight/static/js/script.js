@@ -23,7 +23,6 @@ const patterns = [
 const hideForm = function () {
   if (returnText.textContent) {
     form.classList.add("hide");
-    returnText.style.marginTop = "10rem";
   } else {
     setTimeout(hideForm, 300);
   }
