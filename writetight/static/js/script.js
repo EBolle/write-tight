@@ -19,6 +19,9 @@ const patterns = [
   "words-ending-with-ly",
 ];
 
+// There are only two functionalities for now: unhide patterns that are matched and unhide no patterns matched
+// The refresh button should simply link to the input() function
+
 // Hide the form when returnText is visible [this finally works!, now make it neat and add a REFRESH button]
 
 const hideForm = function () {
