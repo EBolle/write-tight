@@ -11,14 +11,32 @@
     <title>Better writing with write-tight.</title>
   </head>
   <body>
-    <article class="main-container">
-      <div class="refresh-section">
-        <a class="refresh-button" href="{{ url_for('input') }}">
-          <span><ion-icon name="refresh-outline"></ion-icon></span>
-        </a>
+    <div class="main-container">
+      <div class="content-wrapper">
+        <div class="refresh-section">
+          <a class="refresh-button" href="{{ url_for('input') }}">
+            <span><ion-icon name="refresh-outline"></ion-icon></span>
+          </a>
+        </div>
+        {% block content %} {% endblock %}
       </div>
-      {% block content %} {% endblock %}
-    </article>
+      <footer class="footer">
+        <p class="footer-text">
+          Do you want to add a pattern or do you have other suggestions? Feel
+          free to get in touch via Github.
+        </p>
+        <a
+          class="footer-link"
+          target="_blank"
+          href="https://github.com/EBolle/write-tight.git"
+        >
+          <span
+            ><ion-icon class="footer-icon" name="logo-github"></ion-icon>
+          </span>
+        </a>
+      </footer>
+    </div>
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"

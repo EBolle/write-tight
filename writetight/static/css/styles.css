@@ -25,7 +25,13 @@ body {
 }
 
 .main-container {
+  position: relative;
+  min-height: 100vh;
   margin-top: 10rem;
+}
+
+.content-wrapper {
+  padding-bottom: 4rem;
 }
 
 span {
@@ -172,4 +178,28 @@ span {
   font-weight: 500;
   font-size: 2rem;
   color: red;
+}
+
+/* footer  */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.2rem;
+  position: absolute;
+  bottom: 10rem;
+  height: 4rem;
+  width: 100%;
+}
+
+.footer-text {
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+.footer-link ion-icon {
+  color: var(--color-secundary);
+  height: 4rem;
+  width: 4rem;
 }
