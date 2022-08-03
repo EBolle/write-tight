@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from flask import Flask, render_template, request
@@ -27,19 +28,20 @@ app = Flask(__name__, template_folder=TEMPLATE_PATH, static_folder=STATIC_PATH) 
 
 
 @app.route("/")
-def textarea():
-    return render_template("index.html")
+def input():
+    return render_template("input.html")
 
 
 @app.route("/", methods=["POST"])
-def textarea_post():
+def output():
     text_input = request.form["text"]
     text_output = escape(text_input)
+    text_output = re.sub(r"\n", "</br>", text_output)
 
     for pattern in patterns:
         text_output = pattern.match_and_replace(text_output)
 
-    return render_template("index.html", submit_text=Markup(text_output))
+    return render_template("output.html", submit_text=Markup(text_output))
 
 
 if __name__ == "__main__":
