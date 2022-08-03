@@ -68,7 +68,7 @@ span {
 }
 
 .ioformat {
-  height: 25rem;
+  height: 30rem;
   padding: 2rem;
   border-radius: 1rem;
   border: 2px solid transparent;
@@ -81,6 +81,7 @@ span {
   width: 100%;
   background-color: var(--color-primary);
   transition: all 0.5s;
+  outline: none;
 }
 
 .text-input:hover {
@@ -117,6 +118,11 @@ span {
 .submit-button:hover {
   transform: translateY(-1.2rem);
   box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.04);
+}
+
+.text-output {
+  overflow: auto;
+  border-color: var(--color-secundary);
 }
 
 /* pattern colors */
