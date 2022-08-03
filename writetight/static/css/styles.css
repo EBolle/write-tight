@@ -15,8 +15,7 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: #fff;
 
-  max-width: 120rem;
-  padding: 0 3.2rem;
+  max-width: 100rem;
   margin: 0 auto;
 }
 
@@ -25,15 +24,20 @@ body {
   --color-secundary: #ee4e34;
 }
 
+.main-container {
+  margin-top: 10rem;
+}
+
 span {
   font-size: 2.2rem;
   font-weight: 700;
 }
 
-/* Top section */
+/* refresh section */
 
-.top-section {
-  margin-top: 10rem;
+.refresh-section {
+  height: 6rem;
+  padding: 1rem 0rem;
 }
 
 .refresh-button {
@@ -54,13 +58,22 @@ span {
   color: #555;
 }
 
-/* Textarea  */
+/* textio general  */
 
-.textarea {
+.iotext {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+/* text input  */
+
+.textinput {
   display: block;
 
   width: 100%;
-  height: 20rem;
+  height: 25rem;
 
   background-color: var(--color-primary);
   padding: 2rem;
@@ -68,27 +81,22 @@ span {
   border: 2px solid transparent;
   outline: none;
 
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 1.4;
-
   transition: all 0.5s;
 }
 
-.textarea:hover {
+.textinput:hover {
   cursor: pointer;
   background-color: #eee;
 }
 
-.textarea:focus {
+.textinput:focus {
   cursor: text;
   color: #333;
   background-color: #fff;
   border-color: var(--color-secundary);
 }
 
-/* Submit button  */
+/* submit button  */
 
 .submit-container {
   display: grid;
@@ -112,22 +120,13 @@ span {
   box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.04);
 }
 
-/* Return text */
+/* text output */
 
-.return-text {
-  padding: 2rem;
-  border: 2px solid transparent;
-  outline: none;
+/* .return-text {
 
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 1.4;
-  color: #333;
+} */
 
-  border-bottom: 2px solid #ddd;
-}
-
-/* Pattern colors */
+/* pattern colors */
 
 .ambiguous-openings {
   color: purple;
@@ -149,7 +148,7 @@ span {
   color: orange;
 }
 
-/* Pattern explanations  */
+/* pattern explanations  */
 
 .hide {
   display: none;
@@ -166,7 +165,7 @@ span {
   padding: 1rem;
 }
 
-/* No patterns warning  */
+/* no patterns warning  */
 
 .no-patterns {
   padding: 1rem;
