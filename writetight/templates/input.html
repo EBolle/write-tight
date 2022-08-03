@@ -1,12 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="refresh-section">
-  <form action="{{ url_for('input') }}">
-    <button class="refresh-button">
-      <span><ion-icon name="refresh-outline"></ion-icon></span>
-    </button>
-  </form>
-</div>
 <div class="textio-section">
   <form action="{{ url_for('output') }}" method="post">
     <textarea
