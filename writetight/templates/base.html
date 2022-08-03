@@ -13,11 +13,9 @@
   <body>
     <article class="main-container">
       <div class="refresh-section">
-        <form action="{{ url_for('input') }}">
-          <button class="refresh-button">
-            <span><ion-icon name="refresh-outline"></ion-icon></span>
-          </button>
-        </form>
+        <a class="refresh-button" href="{{ url_for('input') }}">
+          <span><ion-icon name="refresh-outline"></ion-icon></span>
+        </a>
       </div>
       {% block content %} {% endblock %}
     </article>
