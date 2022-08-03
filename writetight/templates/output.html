@@ -1,11 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<div class="textio-section">
+
+<div class="refresh-section">
   <button class="refresh-button">
     <span><ion-icon name="refresh-outline"></ion-icon></span>
   </button>
-  <p class="textoutput iotext">{{ submit_text }}</p>
 </div>
-<div class="pattern-explanations">
+<div class="textio-section">
+  <p class="text-output iotext ioformat">{{ submit_text }}</p>
+</div>
+<!-- <div class="pattern-explanations">
   <p class="ambiguous-openings-exp">
     <span class="ambiguous-openings">Ambiguous openings:</span>
     there was, It were, It was. These sentence openings are vague. The more
@@ -35,6 +38,6 @@
 <p class="no-patterns">
   <span>No patterns found:</span> please see the documentation for currently
   supported patterns.
-</p>
+</p> -->
 
 {% endblock %}

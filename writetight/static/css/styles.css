@@ -67,29 +67,28 @@ span {
   line-height: 1.4;
 }
 
-/* text input  */
-
-.textinput {
-  display: block;
-
-  width: 100%;
+.ioformat {
   height: 25rem;
-
-  background-color: var(--color-primary);
   padding: 2rem;
   border-radius: 1rem;
   border: 2px solid transparent;
-  outline: none;
+}
 
+/* text input  */
+
+.text-input {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
   transition: all 0.5s;
 }
 
-.textinput:hover {
+.text-input:hover {
   cursor: pointer;
   background-color: #eee;
 }
 
-.textinput:focus {
+.text-input:focus {
   cursor: text;
   color: #333;
   background-color: #fff;
@@ -119,12 +118,6 @@ span {
   transform: translateY(-1.2rem);
   box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.04);
 }
-
-/* text output */
-
-/* .return-text {
-
-} */
 
 /* pattern colors */
 
