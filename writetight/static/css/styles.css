@@ -100,6 +100,7 @@ span {
 
 .submit-container {
   display: grid;
+  height: 15rem;
 }
 
 .submit-button {
