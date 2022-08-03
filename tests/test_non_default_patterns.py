@@ -1,4 +1,3 @@
-"""Testing my understanding of the default patterns."""
 import re
 
 import pytest

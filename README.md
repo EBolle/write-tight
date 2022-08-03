@@ -1,6 +1,6 @@
 # write-tight
 
-This project aims to make you a better business with the help of simple rule based patterns. According to a [popular Udemy course on business writing][udemy] we should spend 50% of our writing time on post-writing. In this post-writing phase we make sure our documents are written as clear and concise as possible, which is sometimes referred to as tight writing.
+This project aims to make you a better business writer with the help of simple rule based patterns. According to a [popular Udemy course on business writing][udemy] we should spend 50% of our writing time on post-writing. In this post-writing phase we make sure our documents are written as clear and concise as possible, which is sometimes referred to as tight writing.
 
 There are certain patterns in our writing which we want to avoid if we want to write tight. These are patterns that indicate 'deadwood'. According to the [book on tight writing][write-tight] deadwood is the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing. A few examples:
 
@@ -28,7 +28,7 @@ git clone https://github.com/EBolle/write-tight.git
 cd write-tight
 ```
 
-Next create and activate a new virtual environment and run the following command, for example:
+Next create and activate a new virtual environment, and install the requirements.
 
 ```
 conda create --name write-tight python=3.9
