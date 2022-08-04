@@ -3,9 +3,12 @@ the same Pattern interface.
 """
 import re
 
-from nltk.corpus import wordnet as wn  # type: ignore
+import spacy
 
 from writetight.src.pattern import Pattern
+
+
+nlp = spacy.load("en_core_web_sm")
 
 
 class PassiveVoicePattern(Pattern):
@@ -35,7 +38,7 @@ class PassiveVoicePattern(Pattern):
             return match_words
 
     def is_verb(self, word: str) -> bool:
-        return bool(wn.synsets(word, pos=wn.VERB))
+        return nlp(word)[0].pos_ == "VERB"
 
 
 passive_voice = PassiveVoicePattern(

@@ -185,21 +185,15 @@ span {
 .footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2.2rem;
+  justify-content: right;
   position: absolute;
   bottom: 10rem;
   height: 4rem;
   width: 100%;
 }
 
-.footer-text {
-  font-size: 1.6rem;
-  font-style: italic;
-}
-
 .footer-link ion-icon {
-  color: var(--color-secundary);
   height: 4rem;
   width: 4rem;
+  color: var(--color-secundary);
 }
