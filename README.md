@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 Since a small part of the project depends on [spaCy][spacy] you also need to install their small English model.
 
-````
+```
 python -m spacy download en_core_web_sm
 ```
 
@@ -47,7 +47,7 @@ Run the following python command to start a local flask server.
 
 ```bash
 python main.py
-````
+```
 
 Finally open your browser, go to `localhost:5000` and either start typing or paste in your text.
 
@@ -58,11 +58,13 @@ Only the English language is supported.
 The current version only supports five patterns, but I intend to add many other useful patterns in the coming months.
 
 The suggestions are rule based and adhere to a certain style of writing. It is therefore likely that not every edge case will
-be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the interface, you
+be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
 can easily modify the project to your own writing stlye.
 
 The maximum number of characters is set to 1000 to keep the experience smooth. When more sentence- and paragraph patterns become
 available this number will likely be increased.
+
+Currently the project has only been tested on Linux with Google Chrome.
 
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
 [write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
