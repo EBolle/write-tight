@@ -37,11 +37,17 @@ conda activate write-tight
 pip install -r requirements.txt
 ```
 
-Run the python command to start a local flask server.
+Since a small part of the project depends on [spaCy][spacy] you also need to install their small English model.
+
+````
+python -m spacy download en_core_web_sm
+```
+
+Run the following python command to start a local flask server.
 
 ```bash
 python main.py
-```
+````
 
 Finally open your browser, go to `localhost:5000` and either start typing or paste in your text.
 
@@ -62,3 +68,4 @@ available this number will likely be increased.
 [write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [blogpost-1]: https://www.ernst-bolle.com/posts/regex-part-1
 [blogpost-2]: https://www.ernst-bolle.com/posts/regex-part-2
+[spacy]: https://spacy.io/
