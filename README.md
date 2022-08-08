@@ -37,12 +37,6 @@ conda activate write-tight
 pip install -r requirements.txt
 ```
 
-Since a small part of the project depends on [spaCy][spacy] you also need to install their small English model.
-
-```
-python -m spacy download en_core_web_sm
-```
-
 Run the following python command to start a local flask server.
 
 ```bash
@@ -70,4 +64,3 @@ Currently the project has only been tested on Linux with Google Chrome.
 [write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [blogpost-1]: https://www.ernst-bolle.com/posts/regex-part-1
 [blogpost-2]: https://www.ernst-bolle.com/posts/regex-part-2
-[spacy]: https://spacy.io/
