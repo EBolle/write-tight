@@ -1,8 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
-setup(
-    name="writetight",
-    version="0.1.0",
-    packages=find_packages(),
-    include_package_data=True,
-)
+if __name__ == "__main__":
+    setup()

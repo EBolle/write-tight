@@ -8,7 +8,7 @@ ENV PATH="${PATH}:/home/user/.local/bin"
 
 COPY ./writetight ./writetight
 
-COPY requirements.txt setup.py main.py ./
+COPY requirements.txt setup.py setup.cfg main.py ./
 
 USER user
 
@@ -19,7 +19,5 @@ RUN pip install --user pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV FLASK_APP=main.py
-
-RUN ["python3", "-m", "spacy", "download", "en_core_web_sm"]
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
