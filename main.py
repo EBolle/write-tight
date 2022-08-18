@@ -10,13 +10,14 @@ from writetight.src.default_patterns import (
     words_ending_with_ly,
     subjunctive_mood,
 )
-from writetight.src.non_default_patterns import passive_voice
+from writetight.src.non_default_patterns import passive_voice, repeated_words
 
 
 patterns = [
     ambiguous_pronouns,
     ambiguous_openings,
     words_ending_with_ly,
+    repeated_words,
     subjunctive_mood,
     passive_voice,
 ]

@@ -48,3 +48,23 @@ passive_voice = PassiveVoicePattern(
         flags=re.IGNORECASE,
     ),
 )
+
+
+class RepeatedWordsPattern(Pattern):
+    def __init__(self, name: str, pattern: re.Pattern[str]):
+        super().__init__(name, pattern)
+
+    def match_and_replace(self, html_content: str) -> str:
+        return re.sub(self.pattern, self.add_span_element, html_content)
+
+    def add_span_element(self, match: re.Match[str]) -> str:
+        "Due to re.IGNORECASE it still makes sense to split the words."
+        first_word, second_word = match.group(0).split()
+
+        return f"{first_word} <span class={self.name}>{second_word}</span>"
+
+
+repeated_words = RepeatedWordsPattern(
+    name="repeated-words",
+    pattern=re.compile(r"(\w+)\s+\1", flags=re.IGNORECASE),
+)
