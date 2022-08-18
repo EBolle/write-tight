@@ -36,3 +36,15 @@ def test_repeated_words(test_input: str, expected: str):
         next(re.finditer(repeated_words.pattern, test_input)).group()
         == expected
     )
+
+
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        ("information on", []),
+        ("with the world", []),
+    ],
+)
+def test_repeated_words_empty_return(test_input: str, expected: str):
+    """Without the word boundaries on on and th th would match."""
+    assert list(re.finditer(repeated_words.pattern, test_input)) == expected

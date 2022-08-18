@@ -66,5 +66,5 @@ class RepeatedWordsPattern(Pattern):
 
 repeated_words = RepeatedWordsPattern(
     name="repeated-words",
-    pattern=re.compile(r"(\w+)\s+\1", flags=re.IGNORECASE),
+    pattern=re.compile(r"\b(\w+)\s+\1\b", flags=re.IGNORECASE),
 )
