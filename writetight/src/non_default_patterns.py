@@ -59,7 +59,7 @@ class RepeatedWordsPattern(Pattern):
 
     def add_span_element(self, match: re.Match[str]) -> str:
         "Due to re.IGNORECASE it still makes sense to split the words."
-        first_word, second_word = match.group(0).split()
+        first_word, second_word = match.group().split()
 
         return f"{first_word} <span class={self.name}>{second_word}</span>"
 
