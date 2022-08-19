@@ -146,6 +146,10 @@ span {
   color: green;
 }
 
+.personal-pronouns {
+  color: red;
+}
+
 .repeated-words {
   font-size: 2rem;
   font-weight: 500;
@@ -153,7 +157,7 @@ span {
 }
 
 .subjunctive-mood {
-  color: brown;
+  color: #80471c;
 }
 
 .words-ending-with-ly {

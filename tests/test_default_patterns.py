@@ -5,6 +5,7 @@ import pytest
 from writetight.src.default_patterns import (
     ambiguous_pronouns,
     ambiguous_openings,
+    personal_pronouns,
     words_ending_with_ly,
     subjunctive_mood,
 )
@@ -58,3 +59,15 @@ def test_words_ending_with_ly(test_input: str, expected: str):
 )
 def test_subjunctive_mood(test_input: str, expected: str):
     assert re.findall(subjunctive_mood.pattern, test_input) == expected
+
+
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        ("Meaning should not match", []),
+        ("Personally myself and I should", ["Personally", "myself", "I"]),
+        ("imemine should not match due to word boundaries, r i ght?", ["i"]),
+    ],
+)
+def test_personal_pronouns(test_input: str, expected: str):
+    assert re.findall(personal_pronouns.pattern, test_input) == expected
