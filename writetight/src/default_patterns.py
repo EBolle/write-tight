@@ -44,6 +44,6 @@ subjunctive_mood = DefaultPattern(
 personal_pronouns = DefaultPattern(
     name="personal-pronouns",
     pattern=re.compile(
-        r"\b(i|me|my|myself|personally)\b", flags=re.IGNORECASE
+        r"\b(i|me|mine|my|myself|personally)\b", flags=re.IGNORECASE
     ),
 )
