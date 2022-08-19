@@ -40,3 +40,10 @@ subjunctive_mood = DefaultPattern(
     name="subjunctive-mood",
     pattern=re.compile(r"\b(would|should|could)\b", flags=re.IGNORECASE),
 )
+
+personal_pronouns = DefaultPattern(
+    name="personal-pronouns",
+    pattern=re.compile(
+        r"\b(i|me|my|myself|personally)\b", flags=re.IGNORECASE
+    ),
+)

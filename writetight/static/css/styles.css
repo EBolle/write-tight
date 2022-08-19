@@ -146,6 +146,10 @@ span {
   color: green;
 }
 
+.personal-pronouns {
+  color: red;
+}
+
 .repeated-words {
   font-size: 2rem;
   font-weight: 500;
