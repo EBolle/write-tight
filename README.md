@@ -62,8 +62,8 @@ Currently the project has only been tested on Linux with Google Chrome.
 
 ## What is next?
 
-- [ ] Me, myself, and I pattern
-- [ ] Repeated words pattern
+- [x] Me, myself, and I pattern
+- [x] Repeated words pattern
 - [ ] Sentence length variance
 - [ ] Paragraph length variance
 - [ ] Patterns build with the [spaCy Matcher][spacy-matcher]
