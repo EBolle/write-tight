@@ -6,7 +6,6 @@ from writetight.src.default_patterns import (
     ambiguous_pronouns,
     ambiguous_openings,
     personal_pronouns,
-    words_ending_with_ly,
     subjunctive_mood,
 )
 
@@ -18,7 +17,9 @@ from writetight.src.default_patterns import (
         ("git it thatthere this THOSE", ["it", "this", "THOSE"]),
     ],
 )
-def test_ambiguous_pronouns_word_boundaries(test_input: str, expected: str):
+def test_regex_ambiguous_pronouns_word_boundaries(
+    test_input: str, expected: str
+):
     assert re.findall(ambiguous_pronouns.pattern, test_input) == expected
 
 
@@ -31,22 +32,8 @@ def test_ambiguous_pronouns_word_boundaries(test_input: str, expected: str):
         ("There  are spaces to consider.", []),
     ],
 )
-def test_ambiguous_openings(test_input: str, expected: str):
+def test_regex_ambiguous_openings(test_input: str, expected: str):
     assert re.findall(ambiguous_openings.pattern, test_input) == expected
-
-
-@pytest.mark.parametrize(
-    "test_input, expected",
-    [
-        ("ly", []),
-        ("HappiLy", []),
-        ("onlyyou", []),
-        ("finally you showed up, you silly", ["finally", "silly"]),
-        ("happillllllly ever after", ["happillllllly"]),
-    ],
-)
-def test_words_ending_with_ly(test_input: str, expected: str):
-    assert re.findall(words_ending_with_ly.pattern, test_input) == expected
 
 
 @pytest.mark.parametrize(
@@ -57,7 +44,7 @@ def test_words_ending_with_ly(test_input: str, expected: str):
         ("Would I say that in such a manner?", ["Would"]),
     ],
 )
-def test_subjunctive_mood(test_input: str, expected: str):
+def test_regex_subjunctive_mood(test_input: str, expected: str):
     assert re.findall(subjunctive_mood.pattern, test_input) == expected
 
 
@@ -69,5 +56,5 @@ def test_subjunctive_mood(test_input: str, expected: str):
         ("imemine should not match due to word boundaries, r i ght?", ["i"]),
     ],
 )
-def test_personal_pronouns(test_input: str, expected: str):
+def test_regex_personal_pronouns(test_input: str, expected: str):
     assert re.findall(personal_pronouns.pattern, test_input) == expected

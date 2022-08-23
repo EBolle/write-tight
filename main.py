@@ -7,19 +7,22 @@ from markupsafe import escape, Markup
 from writetight.src.default_patterns import (
     ambiguous_pronouns,
     ambiguous_openings,
-    words_ending_with_ly,
     subjunctive_mood,
 )
-from writetight.src.non_default_patterns import passive_voice, repeated_words
+from writetight.src.non_default_patterns import (
+    passive_voice,
+    repeated_words,
+    adverbs_ending_with_ly,
+)
 
 
 patterns = [
     repeated_words,
     ambiguous_pronouns,
     ambiguous_openings,
-    words_ending_with_ly,
     subjunctive_mood,
     passive_voice,
+    adverbs_ending_with_ly,
 ]
 TEMPLATE_PATH = Path(".") / "writetight" / "templates"
 STATIC_PATH = Path(".") / "writetight" / "static"

@@ -32,10 +32,6 @@ ambiguous_openings = DefaultPattern(
     ),
 )
 
-words_ending_with_ly = DefaultPattern(
-    name="words-ending-with-ly", pattern=re.compile(r"\w+ly\b")
-)
-
 subjunctive_mood = DefaultPattern(
     name="subjunctive-mood",
     pattern=re.compile(r"\b(would|should|could)\b", flags=re.IGNORECASE),

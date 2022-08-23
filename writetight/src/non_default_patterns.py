@@ -68,3 +68,27 @@ repeated_words = RepeatedWordsPattern(
     name="repeated-words",
     pattern=re.compile(r"\b(\w+)\s+\1\b", flags=re.IGNORECASE),
 )
+
+
+class AdverbsEndingWithLy(Pattern):
+    def __init__(self, name: str, pattern: re.Pattern[str]):
+        super().__init__(name, pattern)
+
+    def match_and_replace(self, html_content: str) -> str:
+        return re.sub(self.pattern, self.add_span_element, html_content)
+
+    def add_span_element(self, match: re.Match[str]) -> str:
+        match_str = match.group()
+
+        if self.is_adverb(match_str):
+            return f"<span class={self.name}>{match_str}</span>"
+        else:
+            return match_str
+
+    def is_adverb(self, word: str) -> bool:
+        return nlp(word)[0].pos_ == "ADV"
+
+
+adverbs_ending_with_ly = AdverbsEndingWithLy(
+    name="adverbs-ending-with-ly", pattern=re.compile(r"\w+ly\b")
+)
