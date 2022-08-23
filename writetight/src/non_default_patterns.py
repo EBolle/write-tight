@@ -2,7 +2,6 @@
 the same Pattern interface.
 """
 import re
-from selectors import EpollSelector
 
 import spacy
 
@@ -71,7 +70,7 @@ repeated_words = RepeatedWordsPattern(
 )
 
 
-class AdjectivesEndingWithLy(Pattern):
+class AdverbsEndingWithLy(Pattern):
     def __init__(self, name: str, pattern: re.Pattern[str]):
         super().__init__(name, pattern)
 
@@ -87,9 +86,9 @@ class AdjectivesEndingWithLy(Pattern):
             return match_str
 
     def is_adjective(self, word: str) -> bool:
-        return nlp(word)[0].pos_ == "ADJ"
+        return nlp(word)[0].pos_ == "ADV"
 
 
-words_ending_with_ly = AdjectivesEndingWithLy(
+words_ending_with_ly = AdverbsEndingWithLy(
     name="words-ending-with-ly", pattern=re.compile(r"\w+ly\b")
 )
