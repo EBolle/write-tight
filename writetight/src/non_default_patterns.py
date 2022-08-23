@@ -80,12 +80,12 @@ class AdverbsEndingWithLy(Pattern):
     def add_span_element(self, match: re.Match[str]) -> str:
         match_str = match.group()
 
-        if self.is_adjective(match_str):
+        if self.is_adverb(match_str):
             return f"<span class={self.name}>{match_str}</span>"
         else:
             return match_str
 
-    def is_adjective(self, word: str) -> bool:
+    def is_adverb(self, word: str) -> bool:
         return nlp(word)[0].pos_ == "ADV"
 
 
