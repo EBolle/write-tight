@@ -90,5 +90,5 @@ class AdverbsEndingWithLy(Pattern):
 
 
 words_ending_with_ly = AdverbsEndingWithLy(
-    name="words-ending-with-ly", pattern=re.compile(r"\w+ly\b")
+    name="adverbs-ending-with-ly", pattern=re.compile(r"\w+ly\b")
 )
