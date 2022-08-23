@@ -2,6 +2,7 @@
 the same Pattern interface.
 """
 import re
+from selectors import EpollSelector
 
 import spacy
 
@@ -67,4 +68,28 @@ class RepeatedWordsPattern(Pattern):
 repeated_words = RepeatedWordsPattern(
     name="repeated-words",
     pattern=re.compile(r"\b(\w+)\s+\1\b", flags=re.IGNORECASE),
+)
+
+
+class AdjectivesEndingWithLy(Pattern):
+    def __init__(self, name: str, pattern: re.Pattern[str]):
+        super().__init__(name, pattern)
+
+    def match_and_replace(self, html_content: str) -> str:
+        return re.sub(self.pattern, self.add_span_element, html_content)
+
+    def add_span_element(self, match: re.Match[str]) -> str:
+        match_str = match.group()
+
+        if self.is_adjective(match_str):
+            return f"<span class={self.name}>{match_str}</span>"
+        else:
+            return match_str
+
+    def is_adjective(self, word: str) -> bool:
+        return nlp(word)[0].pos_ == "ADJ"
+
+
+words_ending_with_ly = AdjectivesEndingWithLy(
+    name="words-ending-with-ly", pattern=re.compile(r"\w+ly\b")
 )
