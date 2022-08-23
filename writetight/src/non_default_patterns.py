@@ -89,6 +89,6 @@ class AdverbsEndingWithLy(Pattern):
         return nlp(word)[0].pos_ == "ADV"
 
 
-words_ending_with_ly = AdverbsEndingWithLy(
+adverbs_ending_with_ly = AdverbsEndingWithLy(
     name="adverbs-ending-with-ly", pattern=re.compile(r"\w+ly\b")
 )
