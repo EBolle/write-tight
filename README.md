@@ -4,13 +4,14 @@ This project aims to make you a better (business) writer with the help of simple
 
 There are certain patterns in our writing which we want to avoid if we want to write tight. These are patterns that indicate 'deadwood'. According to the [book on tight writing][write-tight] deadwood is the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing. A few examples:
 
-- Words that end on 'ly'
+- Adverbs that end on 'ly'
 - Passive voice
 - Subjunctive mood
 - Ambiguous pronouns
 - Ambiguous openings
+- Many more..
 
-This project translated these writing patterns to regular expressions. In case of a match, the text is color highlighted so you can easily spot potential improvements. The following example text comes directly from one of my blog posts.
+This project translated these writing patterns to regular expressions. For some patterns the regular expression matches are validated with the help of [spaCy][spacy], for example to check if a match is a `verb` or an `adverb`. If the match is still valid, the text is color highlighted so you can easily spot potential improvements. The following example text comes directly from one of my blog posts.
 
 <img src="https://user-images.githubusercontent.com/49920622/182711607-b49c6918-b372-4634-8fcb-fc1a7d37e2d3.png" width=800>
 
@@ -49,7 +50,7 @@ Finally open your browser, go to `localhost:5000` and either start typing or pas
 
 Only the English language is supported.
 
-The current version only supports five patterns.
+The current version only supports seven patterns.
 
 The suggestions are rule based and adhere to a certain style of writing. It is therefore likely that not every edge case will
 be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
@@ -62,10 +63,11 @@ Currently the project has only been tested on Linux with Google Chrome.
 
 ## What is next?
 
-- [ ] Me, myself, and I pattern
-- [ ] Repeated words pattern
+To see what features are already available please see the [release notes][release-notes].
+
+- [ ] Documentation on how to add patterns to the project
+- [ ] Make the project pip installable
 - [ ] Sentence length variance
-- [ ] Paragraph length variance
 - [ ] Patterns build with the [spaCy Matcher][spacy-matcher]
 - [ ] Many more..
 
@@ -83,4 +85,6 @@ docker run -d -p 5000:5000 write-tight
 [write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [blogpost-1]: https://www.ernst-bolle.com/posts/regex-part-1
 [blogpost-2]: https://www.ernst-bolle.com/posts/regex-part-2
+[spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
+[release-notes]: https://github.com/EBolle/write-tight/releases
