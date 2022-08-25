@@ -7,6 +7,7 @@ from markupsafe import escape, Markup
 from writetight.src.default_patterns import (
     ambiguous_pronouns,
     ambiguous_openings,
+    personal_pronouns,
     subjunctive_mood,
 )
 from writetight.src.non_default_patterns import (
@@ -20,6 +21,7 @@ patterns = [
     repeated_words,
     ambiguous_pronouns,
     ambiguous_openings,
+    personal_pronouns,
     subjunctive_mood,
     passive_voice,
     adverbs_ending_with_ly,
