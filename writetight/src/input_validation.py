@@ -1,7 +1,7 @@
 import sys 
 from pathlib import Path
 
-def get_input_file() -> str:
+def get_text_file() -> str:
 
     if len(sys.argv) > 1:
         input_file_path = sys.argv[1]
