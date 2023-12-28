@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "write-tight"
+version = "0.4.0"
+authors = [
+    {name = "Ernst Bolle", email = "ernst-bolle@bolle-data-consultancy.nl"},
+]
+description = "Write tight helps you to say exactly what you want with precision and power."
+readme = "README.MD"
+dependencies = [
+    "spacy>=3.5.2",
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl"
+]
+
+[project.scripts]
+wt = "writetight.main:run"
