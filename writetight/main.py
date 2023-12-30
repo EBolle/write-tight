@@ -42,8 +42,9 @@ def main():
 
         current_line = text_lines_num[current_line_num][1]
 
-        if match in current_line:
-            print(current_line_num + 1, pattern, match, current_line)
+        match_column = current_line.find(match)
+        if match_column >= 0:
+            print(f"Ln {current_line_num + 1}, Col {match_column + 1}: {pattern}['{match}']")
             current_match = matches.pop(0)
         else:
-            current_line_num += 1        
+            current_line_num += 1
