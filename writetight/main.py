@@ -20,6 +20,17 @@ matcher.add("ly_adverbs", [ly_adverbs])
 
 
 def main():
+    """
+    This function reads a text file, which is processed in three ways.
+
+    1. As an nlp doc instance to get every pattern match and its location in the text file.
+    2. As a list of tokens to get the string match based on the match location.
+    3. As a list of line numbers and lines to link the location of the string match to the exact line number and column.
+
+    The matcher instance returns a list of matches with the start token of the match in ascending order.
+    This ascending order is leveraged to only try to match the first match found with the first line of the text file.
+    If there is a match, the second match is initialized. If there is no match, the second line of the text file is processed. 
+    """
     text = get_text_file()
     text_lines = text.splitlines()
     text_lines_num = [(line_num, line) for line_num, line in enumerate(text_lines)]
