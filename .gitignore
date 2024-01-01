@@ -130,3 +130,6 @@ dmypy.json
 
 # Notebooks
 /notebooks
+
+# Roadmap file (internal use only)
+roadmap.md
