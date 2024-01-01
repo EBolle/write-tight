@@ -8,15 +8,16 @@ from writetight.src.patterns import (
     passive_voice,
     ly_adverbs,
 )
+from writetight.src.pattern_questions import pattern_question
 
 
 nlp = spacy.load("en_core_web_sm")
 
 matcher = Matcher(nlp.vocab)
-matcher.add("ambiguous_pronouns", [ambiguous_pronouns])
-matcher.add("ambiguous_openings", [ambiguous_openings])
-matcher.add("passive_voice", [passive_voice])
-matcher.add("ly_adverbs", [ly_adverbs])
+matcher.add("ambiguous-pronouns", [ambiguous_pronouns])
+matcher.add("ambiguous-openings", [ambiguous_openings])
+matcher.add("passive-voice", [passive_voice])
+matcher.add("ly-adverbs", [ly_adverbs])
 
 
 def main():
@@ -55,7 +56,7 @@ def main():
 
         match_column = current_line.find(match)
         if match_column >= 0:
-            print(f"Ln {current_line_num + 1}, Col {match_column + 1}: {pattern}['{match}']")
+            print(f"Ln {current_line_num + 1}, Col {match_column + 1}: {pattern}['{match}'] {pattern_question(pattern, match)}")
             current_match = matches.pop(0)
         else:
             current_line_num += 1

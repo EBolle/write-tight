@@ -5,13 +5,14 @@ def pattern_question(pattern: str, match: str) -> str:
     Turn this into a dictionary, possibily within a function, much better and faster.
     """
     questions = {
-        "ambiguous_pronouns": ambiguous_pronouns_question(match),
-        "ambiguous_openings": "Find who or what does the action and reconstruct the sentence.", 
+        "ambiguous-pronouns": ambiguous_pronouns_question(match),
+        "ambiguous-openings": "Find who or what does the action and reconstruct the sentence.", 
         "passive-voice": f"Who are what {match}? -> make the answer the subject of the verb.",
-        "ly-adverbs": f"Does the adverb {match} provide value to your sentence?"
+        "ly-adverbs": f"Does the adverb {match} provide value to your sentence?",
+        "default": "No helper question available for this pattern."
     }
 
-    return questions[pattern]
+    return questions.get(pattern, "default")
 
 
 def ambiguous_pronouns_question(match: str) -> str:
