@@ -1,25 +1,35 @@
 # write-tight
 
-This project will help you become a better (business) writer with the help of simple rule based writing patterns. The inspiration of this project comes from two sources:
+This project helps you become a better writer with the help of simple rule based writing patterns. The inspiration of this project comes from two sources:
 
-1. The book "Write Tight: say exactly what you want with precision and power" by <author>
-2. The Udemy course "Business writing immersion" by <author>
+1. The book "Write Tight: Say Exactly What You Mean With Precision and Power" by William Brohaugh.
+2. The Udemy course "Business Writing & Technical Writing Immersion" by Paul Siegel (Starweaver Instructor Team).
 
-Both sources emphasise that eliminating deadwood is important to improve your writing.
+The book and the Udemy course both emphasise that eliminating deadwood is important to improve your writing.
 
-> deadwood is the the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing
-> Write Tight
+> &ldquo;Deadwood is the the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing.&rdquo;
+>
+> _William Brohaugh_
 
-Both sources provide numerous detailed descriptions of deadwood patterns, and how to detect and remove them. A few examples:
+Examples of deadwood writing patterns are:
 
 - Adverbs that end on 'ly'
-- Passive voice
-- Subjunctive mood
-- Ambiguous pronouns
-- Ambiguous openings
-- More patterns will follow in future releases..
 
-This project translated these (anti) writing patterns into rule based expressions using the [spaCy][spacy] matcher.
+Explain
+
+- Passive voice
+
+Explain
+
+- Ambiguous pronouns
+
+Explain
+
+- Ambiguous openings
+
+Explain
+
+The detailed descriptions on how to detect and remove these deadwood patterns are translated into rule based expressions using the [spaCy][spacy] matcher.
 
 ## How to use write-tight?
 
@@ -27,7 +37,9 @@ Write-tight provides a command-line interface and sends the found patterns to `s
 
 <image>
 
-The reason for this setup is that I write most of my digital content (blog posts, web pages, technical instructions) in `VSCode`, and that I want to get feedback on my writing without having to copy-paste the content, and going back and forth between applications. The text file you provide as input is read as-is, so you are not limited to the Markdown `.md` format.
+The reason for the command-line interface is that I write most of my digital content (blog posts, web pages, technical instructions) in a code editor (`VSCode`), and that I want feedback on my writing without having to copy-paste the content, and going back and forth between different applications.
+
+The only argument you have to provide is the path to your text file. Note that your text file is read as-is, so you are not limited to a certain format, for example Markdown (`.md`).
 
 ## Getting started
 
@@ -47,13 +59,11 @@ conda activate write-tight
 pip install -r requirements.txt
 ```
 
-Run the following python command to start a local flask server.
+Run the following command.
 
 ```bash
-python main.py
+wt your_text_file.md
 ```
-
-Finally open your browser, go to `localhost:5000` and either start typing or paste in your text.
 
 ## Limitations
 
