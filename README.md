@@ -53,7 +53,7 @@ Only the English language is supported.
 
 The suggestions are rule based and adhere to a certain style of writing. It is therefore likely that not every edge case will
 be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
-can easily modify the project to your own writing style.
+can easily modify the project to your own writing **style**.
 
 [wt-book]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
