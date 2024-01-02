@@ -1,11 +1,11 @@
 # write-tight
 
-This project helps you become a better writer with the help of simple rule based writing patterns. The inspiration of this project comes from two sources:
+This project improves your professional writing with the help of simple rule-based writing patterns. The inspiration of this project comes from two sources:
 
 1. The book "Write Tight: Say Exactly What You Mean With Precision and Power" by William Brohaugh.
 2. The Udemy course "Business Writing & Technical Writing Immersion" by Paul Siegel (Starweaver Instructor Team).
 
-The book and the Udemy course both emphasise that eliminating deadwood is important to improve your writing.
+Both sources emphasise that eliminating &lsquo;deadwood&rsquo; is critical to improve your writing.
 
 > &ldquo;Deadwood is the the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing.&rdquo;
 >
@@ -13,9 +13,11 @@ The book and the Udemy course both emphasise that eliminating deadwood is import
 
 Examples of deadwood writing patterns are:
 
-- Adverbs that end on 'ly'
+1. Adverbs that end on &lsquo;ly&rsquo;
 
-Explain
+- &ldquo;I am _very_ outraged by this!&rdquo; -> What does _very_ add to this sentence?
+- &ldquo;That movie is _really_ good.&rdquo; -> Words like _great_ or _awesome_ are better alternatives for &lsquo;really good&rsquo;.
+- &ldquo;That is _basically_ a good idea.&rdquo; -> Just leave it out.
 
 - Passive voice
 
