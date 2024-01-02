@@ -8,8 +8,7 @@ def get_text_file() -> str:
     if len(sys.argv) > 1:
         input_file_path = sys.argv[1]
     else:
-        print("Please provide a path to the text file.")
-        return
+        raise ValueError("Please provide a path to your text file.")
 
     if Path(input_file_path).exists():
         input_file_path_abs = Path(input_file_path).absolute()
@@ -17,8 +16,7 @@ def get_text_file() -> str:
             input_file = input_stream.read()
         return input_file
     else:
-        print("The path does not exist.")
-        return
+        raise ValueError("The path does not exist.")
 
 
 def replace_markdown_style_operators(match_object: Match) -> Optional[str]:

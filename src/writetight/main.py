@@ -19,8 +19,9 @@ from writetight.pattern_questions import pattern_question
 try:
     nlp = spacy.load("en_core_web_sm")
 except IOError as err:
-    print(f"You need the 'en_core_web_sm' language model from spaCy for write-tight to work."
-          f"Please enter the following command in your terminal: python -m download en_core_web_sm"
+    print(f"You need the 'en_core_web_sm' language model from spaCy for write-tight to work.\n"
+          f"Please enter the following command in your terminal with your virtual environment activated: \n"
+          f"python -m spacy download en_core_web_sm\n"
           f"Check the README for more info.")
 
 
