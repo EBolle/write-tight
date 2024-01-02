@@ -2,8 +2,8 @@
 
 This project improves your professional writing with the help of simple rule-based writing patterns. The inspiration of this project comes from two sources:
 
-1. The book "Write Tight: Say Exactly What You Mean With Precision and Power" by William Brohaugh.
-2. The Udemy course "Business Writing & Technical Writing Immersion" by Paul Siegel (Starweaver Instructor Team).
+1. The book [Write Tight: Say Exactly What You Mean With Precision and Power][wt-book] by William Brohaugh.
+2. The Udemy course [Business Writing & Technical Writing Immersion][udemy] by Paul Siegel (Starweaver Instructor Team).
 
 Both sources emphasise that eliminating &lsquo;deadwood&rsquo; is critical to improve your writing.
 
@@ -24,39 +24,28 @@ Examples of deadwood writing patterns are:
 Active voice ensures clarity and achieves greater writing precision by answering _who_ or _what_ performs an action.
 
 - &ldquo;The README.md file _was modified_ with new content.&rdquo; -> Passive voice, who or what modified the README.md file?
-- &ldquo;Ernst modified the README.md file with new content.&rdquo; -> Active voice.
+- &ldquo;John Doe modified the README.md file with new content.&rdquo; -> This sentence in active voice is more precise.
 
 3. Ambiguous pronouns
 
 - &ldquo;The weather was great and the food was lovely. _It_ was amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
 - &ldquo;Please read _this_ before you start.&rdquo; -> Please read the README.md file before you start.
 
-Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of the [spaCy][spacy] library, and specifically the [spaCy Matcher][spacy-matcher].
+Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of [spaCy][spacy], and specifically the [spaCy Matcher][spacy-matcher].
 
 ## Getting started
 
-Create and activate a new virtual environment, and install the requirements. If you have Anaconda installed you can use the following commands.
+Create and activate a new virtual environment, and install `write-tight` with pip.
 
 ```
-conda create --name write-tight python=3.11
-conda activate write-tight
-
-pip install -r requirements.txt
+pip install write-tight
 ```
 
-Run the following command.
-
-```bash
-wt your_text_file.md
-```
-
-Write-tight provides a command-line interface and sends the found patterns to `stdout`, similar to `pylint` for example.
+Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file. Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
 
 <image>
 
-The reason for the command-line interface is that I write most of my digital content (blog posts, web pages, technical instructions) in a code editor (`VSCode`), and that I want feedback on my writing without having to copy-paste the content, and going back and forth between different applications.
-
-The only argument you have to provide is the path to your text file. Note that your text file is read as-is, so you are not limited to a certain format, for example Markdown (`.md`).
+The command line interface allows to stay in your code editor while you write and edit your digital content.
 
 ## Limitations
 
@@ -66,10 +55,7 @@ The suggestions are rule based and adhere to a certain style of writing. It is t
 be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
 can easily modify the project to your own writing style.
 
+[wt-book]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
-[write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
-[blogpost-1]: https://www.ernst-bolle.com/posts/regex-part-1
-[blogpost-2]: https://www.ernst-bolle.com/posts/regex-part-2
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
-[release-notes]: https://github.com/EBolle/write-tight/releases

@@ -7,7 +7,7 @@ def pattern_question(pattern: str, match: str) -> str:
     questions = {
         "ambiguous-pronouns": ambiguous_pronouns_question(match),
         "ambiguous-openings": "Find who or what does the action and reconstruct the sentence.", 
-        "passive-voice": f"Who are what {match}? -> make the answer the subject of the verb.",
+        "passive-voice": f"Who or what {match}? -> make the answer the subject of the verb.",
         "ly-adverbs": f"Does the adverb {match} provide value to your sentence?",
         "default": "No helper question available for this pattern."
     }
