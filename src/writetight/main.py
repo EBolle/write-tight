@@ -3,17 +3,17 @@ import re
 import spacy
 from spacy.matcher import Matcher
 
-from writetight.src.input_validation import (
+from writetight.input_validation import (
     get_text_file,
     replace_markdown_style_operators,
 )
-from writetight.src.patterns import (
+from writetight.patterns import (
     ambiguous_pronouns,
     ambiguous_openings,
     passive_voice,
     ly_adverbs,
 )
-from writetight.src.pattern_questions import pattern_question
+from writetight.pattern_questions import pattern_question
 
 
 nlp = spacy.load("en_core_web_sm")
