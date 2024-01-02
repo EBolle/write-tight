@@ -1,3 +1,5 @@
+import re
+
 import spacy
 from spacy.matcher import Matcher
 
@@ -54,9 +56,9 @@ def main():
 
         current_line = text_lines_num[current_line_num][1]
 
-        match_column = current_line.find(match)
-        if match_column >= 0:
-            print(f"Ln {current_line_num + 1}, Col {match_column + 1}: {pattern}['{match}'] {pattern_question(pattern, match)}")
+        match_column = re.search(rf"\b{match}\b", current_line)
+        if match_column is not None:
+            print(f"Ln {current_line_num + 1}, Col {match_column.start() + 1}: {pattern}['{match}'] {pattern_question(pattern, match)}")
             current_match = matches.pop(0)
         else:
             current_line_num += 1

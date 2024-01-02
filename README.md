@@ -43,7 +43,7 @@ pip install write-tight
 
 Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file. Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
 
-<image>
+![write-tight cli example][wt-cli-img]
 
 The command line interface allows to stay in your code editor while you write and edit your digital content.
 
@@ -59,3 +59,4 @@ can easily modify the project to your own writing style.
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
+[wt-cli-img]: /docs/write-tight-cli.png
