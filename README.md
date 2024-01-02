@@ -41,6 +41,14 @@ Create and activate a new virtual environment, and install `write-tight` with pi
 pip install write-tight
 ```
 
+This project depends on a trained spaCy pipeline called `en_core_web_sm`, and you need to download this pipeline manually if you do not already have it.
+
+```
+python -m spacy download en_core_web_sm
+```
+
+Please refer to the [spaCy installation page][spacy-usage] in case of any issues.
+
 Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file. Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
 
 ![write-tight cli example][wt-cli-img]
@@ -59,4 +67,5 @@ can easily modify the project to your own writing **style**.
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
+[spacy-usage]: https://spacy.io/usage
 [wt-cli-img]: /docs/write-tight-cli.png
