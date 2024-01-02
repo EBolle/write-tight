@@ -19,38 +19,21 @@ Examples of deadwood writing patterns are:
 - &ldquo;That movie is _really_ good.&rdquo; -> Words like _great_ or _awesome_ are better alternatives for &lsquo;really good&rsquo;.
 - &ldquo;That is _basically_ a good idea.&rdquo; -> Just leave it out.
 
-- Passive voice
+2. Passive voice
 
-Explain
+Active voice ensures clarity and achieves greater writing precision by answering _who_ or _what_ performs an action.
 
-- Ambiguous pronouns
+- &ldquo;The README.md file _was modified_ with new content.&rdquo; -> Passive voice, who or what modified the README.md file?
+- &ldquo;Ernst modified the README.md file with new content.&rdquo; -> Active voice.
 
-Explain
+3. Ambiguous pronouns
 
-- Ambiguous openings
+- &ldquo;The weather was great and the food was lovely. _It_ was amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
+- &ldquo;Please read _this_ before you start.&rdquo; -> Please read the README.md file before you start.
 
-Explain
-
-The detailed descriptions on how to detect and remove these deadwood patterns are translated into rule based expressions using the [spaCy][spacy] matcher.
-
-## How to use write-tight?
-
-Write-tight provides a command-line interface and sends the found patterns to `stdout`, similar to `pylint` for example.
-
-<image>
-
-The reason for the command-line interface is that I write most of my digital content (blog posts, web pages, technical instructions) in a code editor (`VSCode`), and that I want feedback on my writing without having to copy-paste the content, and going back and forth between different applications.
-
-The only argument you have to provide is the path to your text file. Note that your text file is read as-is, so you are not limited to a certain format, for example Markdown (`.md`).
+Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of the [spaCy][spacy] library, and specifically the [spaCy Matcher][spacy-matcher].
 
 ## Getting started
-
-Clone the repo and move into the top directory.
-
-```bash
-git clone https://github.com/EBolle/write-tight.git
-cd write-tight
-```
 
 Create and activate a new virtual environment, and install the requirements. If you have Anaconda installed you can use the following commands.
 
@@ -66,6 +49,14 @@ Run the following command.
 ```bash
 wt your_text_file.md
 ```
+
+Write-tight provides a command-line interface and sends the found patterns to `stdout`, similar to `pylint` for example.
+
+<image>
+
+The reason for the command-line interface is that I write most of my digital content (blog posts, web pages, technical instructions) in a code editor (`VSCode`), and that I want feedback on my writing without having to copy-paste the content, and going back and forth between different applications.
+
+The only argument you have to provide is the path to your text file. Note that your text file is read as-is, so you are not limited to a certain format, for example Markdown (`.md`).
 
 ## Limitations
 
