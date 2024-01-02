@@ -4,16 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "write-tight"
-version = "0.4.4"
+version = "0.4.5"
 authors = [
     {name = "Ernst Bolle", email = "ernst-bolle@bolle-data-consultancy.nl"},
 ]
 description = "Write tight helps you to say exactly what you want with precision and power."
 readme = "README.md"
 dependencies = [
-    "spacy==3.7.2"  
+    "spacy>=3.0.0, <=4.0.0"  
 ]
-requires-python = ">= 3.11"
+requires-python = ">= 3.9"
 
 [project.urls]
 Homepage = "https://github.com/EBolle/write-tight"
