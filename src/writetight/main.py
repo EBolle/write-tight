@@ -1,4 +1,5 @@
 import re
+import sys
 
 import spacy
 from spacy.matcher import Matcher
@@ -23,6 +24,7 @@ except IOError as err:
           f"Please enter the following command in your terminal with your virtual environment activated: \n"
           f"python -m spacy download en_core_web_sm\n"
           f"Check the README for more info.")
+    sys.exit(1)
 
 
 matcher = Matcher(nlp.vocab)
