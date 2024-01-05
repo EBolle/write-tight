@@ -68,4 +68,4 @@ can easily modify the project to your own writing **style**.
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
 [spacy-usage]: https://spacy.io/usage
-[wt-cli-img]: /docs/write-tight-cli.png
+[wt-cli-img]: https://github.com/EBolle/write-tight/blob/main/docs/write-tight-cli.png?raw=true
