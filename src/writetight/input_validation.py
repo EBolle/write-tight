@@ -7,8 +7,8 @@ from typing import Optional
 def path_exists(path: str) -> str:
     """
     Return the path string if the path exists.
-    """
-    if Path(path).exists():
+    """    
+    if Path(path).exists() and len(path) > 0:
         return path
     else:
         raise FileNotFoundError(path)
