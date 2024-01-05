@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "write-tight"
-version = "0.4.9"
+version = "0.4.10"
 authors = [
     {name = "Ernst Bolle", email = "ernst-bolle@bolle-data-consultancy.nl"},
 ]
@@ -19,7 +19,7 @@ requires-python = ">= 3.11"
 Homepage = "https://github.com/EBolle/write-tight"
 
 [project.scripts]
-wt = "writetight.main:main"
+writetight = "writetight.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
