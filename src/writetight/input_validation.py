@@ -1,13 +1,13 @@
 import argparse
+import re
 from pathlib import Path
-from re import Match
 from typing import Optional
 
 
 def path_exists(path: str) -> str:
     """
     Return the path string if the path exists.
-    """    
+    """
     if Path(path).exists() and len(path) > 0:
         return path
     else:
@@ -41,11 +41,18 @@ def get_text_file() -> str:
     return input_file
 
 
-def replace_markdown_style_operators(match_object: Match) -> Optional[str]:
+def clean_text_file(text: str) -> str:
     """
     Markdown adds style operators like _ and * for italicized and bold words.
     These style operators must be removed since re.search looks for exact matches
     within word boundaries.
+    """
+    return re.sub(r"(_|\*)", replace_markdown_style_operators, text)
+
+
+def replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
+    """
+    Helper function for clean_text_file().
     """
     if match_object.group(0) in ("-", "*"):
         return ""

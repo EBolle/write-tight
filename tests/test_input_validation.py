@@ -20,7 +20,19 @@ def test_path_exists_bogus_path():
 
 def test_path_exists_real_path():
     """
-    
+    If the path of the input file exists, path_exists will simply return it.
     """
     real_path = input_validation.__file__
     assert input_validation.path_exists(real_path) == real_path
+
+
+def test_clean_text_file():
+    str_with_md_styling = """
+    # A h1 header
+    Shaken, **not** stirred. _James Bond_.
+    """
+    expected = """
+    # A h1 header
+    Shaken, not stirred. James Bond.
+    """
+    assert input_validation.clean_text_file(str_with_md_styling) == expected

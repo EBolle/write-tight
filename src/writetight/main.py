@@ -2,7 +2,7 @@ import re
 
 from writetight.input_validation import (
     get_text_file,
-    replace_markdown_style_operators,
+    clean_text_file,
 )
 from writetight.pattern_questions import pattern_question
 from writetight.nlp import get_language_model, get_matcher
@@ -14,11 +14,11 @@ def main():
     """
     # Get the raw text, and remove the markdown stlye operators.
     text = get_text_file()
-    text_clean = re.sub(r"(_|\*)", replace_markdown_style_operators, text)
+    text_clean = clean_text_file(text)
 
     # Transform the raw text to a spaCy Doc to get the Token objects and matches.
     nlp = get_language_model()
-    doc = nlp(text)
+    doc = nlp(text_clean)
     text_tokens = [token.text for token in doc]
     matcher = get_matcher(nlp)
     matches = matcher(doc)
