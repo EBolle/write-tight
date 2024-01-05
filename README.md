@@ -1,90 +1,71 @@
 # write-tight
 
-This project aims to make you a better (business) writer with the help of simple rule based patterns. According to a [popular Udemy course on business writing][udemy] we should spend 50% of our writing time on post-writing. In this post-writing phase we make sure our documents are written as clear and concise as possible, which is sometimes referred to as tight writing.
+This project improves your professional writing with the help of simple rule-based writing patterns. The inspiration of this project comes from two sources:
 
-There are certain patterns in our writing which we want to avoid if we want to write tight. These are patterns that indicate 'deadwood'. According to the [book on tight writing][write-tight] deadwood is the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing. A few examples:
+1. The book [Write Tight: Say Exactly What You Mean With Precision and Power][wt-book] by William Brohaugh.
+2. The Udemy course [Business Writing & Technical Writing Immersion][udemy] by Paul Siegel (Starweaver Instructor Team).
 
-- Adverbs that end on 'ly'
-- Passive voice
-- Subjunctive mood
-- Ambiguous pronouns
-- Ambiguous openings
-- Many more..
+Both sources emphasise that eliminating &lsquo;deadwood&rsquo; is critical to improve your writing.
 
-This project translated these writing patterns to regular expressions. For some patterns the regular expression matches are validated with the help of [spaCy][spacy], for example to check if a match is a `verb` or an `adverb`. If the match is still valid, the text is color highlighted so you can easily spot potential improvements. The following example text comes directly from one of my blog posts.
+> &ldquo;Deadwood is the the unnecessarily difficult, long, or simply unnecessarily phrases or words that clog the arteries of professional writing.&rdquo;
+>
+> _William Brohaugh_
 
-<img src="https://user-images.githubusercontent.com/49920622/182711607-b49c6918-b372-4634-8fcb-fc1a7d37e2d3.png" width=800>
+Examples of deadwood writing patterns are:
 
-More information and motivation about improving your (business) writing with regular expressions can be found in my series of posts on this topic.
+1. Adverbs that end on &lsquo;ly&rsquo;
 
-- [Improve your writing with regular expressions (part 1)][blogpost-1]
-- [Improve your writing with regular expressions (part 2)][blogpost-2]
+- &ldquo;I am _very_ outraged by this!&rdquo; -> What does _very_ add to this sentence?
+- &ldquo;That movie is _really_ good.&rdquo; -> Words like _great_ or _awesome_ are better alternatives for &lsquo;really good&rsquo;.
+- &ldquo;That is _basically_ a good idea.&rdquo; -> Just leave it out.
+
+2. Passive voice
+
+Active voice ensures clarity and achieves greater writing precision by answering _who_ or _what_ performs an action.
+
+- &ldquo;The README.md file _was modified_ with new content.&rdquo; -> Passive voice, who or what modified the README.md file?
+- &ldquo;John Doe modified the README.md file with new content.&rdquo; -> This sentence in active voice is more precise.
+
+3. Ambiguous pronouns
+
+- &ldquo;The weather was great and the food was lovely. _It_ was amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
+- &ldquo;Please read _this_ before you start.&rdquo; -> Please read the README.md file before you start.
+
+Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of [spaCy][spacy], and specifically the [spaCy Matcher][spacy-matcher].
 
 ## Getting started
 
-Clone the repo and move into the top directory.
-
-```bash
-git clone https://github.com/EBolle/write-tight.git
-cd write-tight
-```
-
-Create and activate a new virtual environment, and install the requirements. If you have Anaconda installed you can use the following commands.
+Create and activate a new virtual environment, and install `write-tight` with pip.
 
 ```
-conda create --name write-tight python=3.9
-conda activate write-tight
-
-pip install -r requirements.txt
+pip install write-tight
 ```
 
-Run the following python command to start a local flask server.
+This project depends on a trained spaCy pipeline called `en_core_web_sm`, and you need to download this pipeline manually if you do not already have it.
 
-```bash
-python main.py
+```
+python -m spacy download en_core_web_sm
 ```
 
-Finally open your browser, go to `localhost:5000` and either start typing or paste in your text.
+Please refer to the [spaCy installation page][spacy-usage] in case of any issues.
+
+Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file. Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
+
+![write-tight cli example][wt-cli-img]
+
+The command line interface allows to stay in your code editor while you write and edit your digital content.
 
 ## Limitations
 
 Only the English language is supported.
 
-The current version only supports seven patterns.
-
 The suggestions are rule based and adhere to a certain style of writing. It is therefore likely that not every edge case will
 be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
-can easily modify the project to your own writing style.
+can easily modify the project to your own writing **style**.
 
-The maximum number of characters is set to 1000 to keep the experience smooth. When more sentence- and paragraph patterns become
-available this number will be increased.
-
-Currently the project has only been tested on Linux with Google Chrome.
-
-## What is next?
-
-To see what features are already available please see the [release notes][release-notes].
-
-- [ ] Documentation on how to add patterns to the project
-- [ ] Make the project pip installable
-- [ ] Sentence length variance
-- [ ] Patterns build with the [spaCy Matcher][spacy-matcher]
-- [ ] Many more..
-
-## Docker
-
-The Dockerfile is included for testing but you are welcome to use it for your own purposes.
-If you run these commands locally the user interface is again available at `localhost:5000`.
-
-```bash
-docker build -t write-tight .
-docker run -d -p 5000:5000 write-tight
-```
-
+[wt-book]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
-[write-tight]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
-[blogpost-1]: https://www.ernst-bolle.com/posts/regex-part-1
-[blogpost-2]: https://www.ernst-bolle.com/posts/regex-part-2
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
-[release-notes]: https://github.com/EBolle/write-tight/releases
+[spacy-usage]: https://spacy.io/usage
+[wt-cli-img]: /docs/write-tight-cli.png
