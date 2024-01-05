@@ -17,5 +17,5 @@ def pattern_question(pattern: str, match: str) -> str:
 
 def ambiguous_pronouns_question(match: str) -> str:
     if match == "it":
-        return "Does 'it' refers to the previous noun?"
+        return "Does 'it' refer to the previous noun?"
     return f"{match} what? Is the answer inserted after the pronoun?"
