@@ -5,7 +5,7 @@ from writetight.input_validation import (
     replace_markdown_style_operators,
 )
 from writetight.pattern_questions import pattern_question
-from writetight.spacy import get_language_model, get_matcher
+from writetight.nlp import get_language_model, get_matcher
 
 
 def main():
