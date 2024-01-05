@@ -26,10 +26,11 @@ Active voice ensures clarity and achieves greater writing precision by answering
 - &ldquo;The README.md file _was modified_ with new content.&rdquo; -> Passive voice, who or what modified the README.md file?
 - &ldquo;John Doe modified the README.md file with new content.&rdquo; -> This sentence in active voice is more precise.
 
-3. Ambiguous pronouns
+3. Ambiguous Openings
 
-- &ldquo;The weather was great and the food was lovely. _It_ was amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
-- &ldquo;Please read _this_ before you start.&rdquo; -> Please read the README.md file before you start.
+- &ldquo;The weather was great and the food was lovely. _It was_ amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
+
+All the patterns and their details are described in the [tests][patterns-tests].
 
 Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of [spaCy][spacy], and specifically the [spaCy Matcher][spacy-matcher].
 
@@ -67,6 +68,7 @@ The suggestions are rule-based which make them easy to use and understand. The d
 
 [wt-book]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
+[patterns-tests]: ./tests/test_patterns.py
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
 [spacy-usage]: https://spacy.io/usage
