@@ -1,4 +1,7 @@
+import argparse
 import re
+from pathlib import Path
+from typing import Optional
 
 from writetight.input_validation import (
     get_text_file,
@@ -8,12 +11,69 @@ from writetight.pattern_questions import pattern_question
 from writetight.nlp import get_language_model, get_matcher
 
 
+def get_parser():
+    parser = argparse.ArgumentParser(
+        prog="write-tight",
+        description="This program validates whether your input text file exists.",
+    )
+    parser.add_argument("path", type=_path_exists, help="path to your text file.")
+
+    return parser
+
+
+def _path_exists(path: str) -> str:
+    """
+    Return the path string if the path exists.
+    """
+    if Path(path).exists() and len(path) > 0:
+        return path
+    else:
+        raise FileNotFoundError(path)
+
+
+def get_text_file(path: str) -> str:
+    """
+    Return the text file if the path argument exists.
+    """
+    extension = path.rsplit(".")[-1]
+    if extension.lower() != "md":
+        print(
+            "Warning: your input file is not recognized as Markdown. "
+            "Write-tight might not function as expected.\n"
+        )
+
+    with open(Path(path), encoding="utf-8") as input_stream:
+        input_file = input_stream.read()
+
+    return input_file
+
+
+def clean_text_file(text: str) -> str:
+    """
+    Markdown adds style operators like _ and * for italicized and bold words.
+    These style operators must be removed since re.search looks for exact matches
+    within word boundaries.
+    """
+    return re.sub(r"(_|\*)", _replace_markdown_style_operators, text)
+
+
+def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
+    """
+    Helper function for clean_text_file().
+    """
+    if match_object.group(0) in ("-", "*"):
+        return ""
+    
+
 def main():
     """
     Better explanation here.
     """
+    parser = get_parser()
+    args = parser.parse_args()
+
     # Get the raw text, and remove the markdown stlye operators.
-    text = get_text_file()
+    text = get_text_file(args.path)
     text_clean = clean_text_file(text)
 
     # Transform the raw text to a spaCy Doc to get the Token objects and matches.

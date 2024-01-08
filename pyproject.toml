@@ -23,4 +23,5 @@ writetight = "writetight.main:main"
 
 [tool.setuptools.packages.find]
 where = ["writetight"]
+include = ["writetight"]
 exclude = ["docs", "notebooks", "tests"]
