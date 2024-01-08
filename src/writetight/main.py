@@ -90,7 +90,7 @@ def main():
     # The 'matches' object contains a list of matches in ascending order of the text.
     # Therefore the text can be analyzed efficiently line for line until all the matches
     # are consumed. A new match starts from the beginning of the sentence of the last match
-    # to control for multiple matches in a single sentence.
+    # to account for multiple matches in a single sentence.
     current_match = matches.pop(0)
     current_line_num = 0
 
