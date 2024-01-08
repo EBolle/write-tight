@@ -22,6 +22,6 @@ Homepage = "https://github.com/EBolle/write-tight"
 writetight = "writetight.main:main"
 
 [tool.setuptools.packages.find]
-where = ["writetight"]
+where = ["src"]
 include = ["writetight"]
 exclude = ["docs", "notebooks", "tests"]

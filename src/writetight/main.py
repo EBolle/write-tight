@@ -3,10 +3,6 @@ import re
 from pathlib import Path
 from typing import Optional
 
-from writetight.input_validation import (
-    get_text_file,
-    clean_text_file,
-)
 from writetight.pattern_questions import pattern_question
 from writetight.nlp import get_language_model, get_matcher
 
