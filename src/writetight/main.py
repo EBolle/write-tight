@@ -1,5 +1,6 @@
 import argparse
 import re
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -19,12 +20,13 @@ def get_parser():
 
 def _path_exists(path: str) -> str:
     """
-    Return the path string if the path exists.
+    Return the path string if the path refers to a file.
     """
-    if Path(path).exists() and len(path) > 0:
+    if Path(path).is_file():
         return path
     else:
-        raise FileNotFoundError(path)
+        print(f"Could not find the specified path: {path}.")
+        sys.exit(1)
 
 
 def get_text_file(path: str) -> str:
