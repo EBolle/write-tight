@@ -82,6 +82,8 @@ def main():
     matches = matcher(doc)
 
     # Split the raw text into lines to display the line number and column number of each match.
+    # Create a function and a named tuple to transform the clean text to a list with TextLine named tuples
+    # with a number and text field names.
     text_lines = text_clean.splitlines()
     text_lines_numbered = [
         (line_number, line) for line_number, line in enumerate(text_lines)
@@ -96,6 +98,7 @@ def main():
 
     while matches:
         pattern_id, match_start_token, match_end_token = current_match
+        # Move the pattern to the print statement where you use it
         pattern = nlp.vocab.strings[pattern_id]
         match = " ".join(text_tokens[match_start_token:match_end_token])
 
@@ -103,6 +106,7 @@ def main():
 
         match_position = re.search(rf"\b{match}\b", current_line)
         if match_position is not None:
+            # Clean this up, abstract the functionality in a function
             print(
                 f"Ln {str(current_line_num + 1).rjust(3)},"
                 f"Col {str(match_position.start() + 1).rjust(3)}: "
