@@ -106,35 +106,30 @@ def main():
     text_in_numbered_lines = text_to_numbered_lines(text_clean)
     matches_generator = _matches_generator(matches)
 
-    
+    # *** main functionality *** # 
 
+    current_match = next(matches_generator)
+    current_line_number = 0 # the text_in_numbered_lines is a list which starts at index 0   
+    matches_left = True 
 
-
-    # The 'matches' object contains a list of matches in ascending order of the text.
-    # Therefore the text can be analyzed efficiently line for line until all the matches
-    # are consumed. A new match starts from the beginning of the sentence of the last match
-    # to account for multiple matches in a single sentence.
-    current_match = matches.pop(0)
-    current_line_num = 0
-
-    while matches:
+    while matches_left:
         pattern_id, match_start_token, match_end_token = current_match
         # Move the pattern to the print statement where you use it
         pattern = nlp.vocab.strings[pattern_id]
         match = " ".join(text_tokens[match_start_token:match_end_token])
 
-        current_line = text_lines_numbered[current_line_num][1]
+        current_line = text_in_numbered_lines[current_line_number].line 
 
-        match_position = re.search(rf"\b{match}\b", current_line)
-        if match_position is not None:
-            # Clean this up, abstract the functionality in a function
-            # Or better, separate finding the matches from printing the matches.
-            # That will also make it easier to test.
+        found_match = re.search(rf"\b{match}\b", current_line)
+        if found_match:
             print(
-                f"Ln {str(current_line_num + 1).rjust(3)},"
-                f"Col {str(match_position.start() + 1).rjust(3)}: "
+                f"Ln {str(text_in_numbered_lines[current_line_number].number).rjust(3)},"
+                f"Col {str(found_match.start() + 1).rjust(3)}: "
                 f"{pattern}['{match}'], {pattern_question(pattern, match)}"
             )
-            current_match = matches.pop(0)
+            try:
+                current_match = next(matches_generator)
+            except StopIteration:
+                matches_left = False 
         else:
-            current_line_num += 1
+            current_line_number += 1
