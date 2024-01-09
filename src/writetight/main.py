@@ -1,8 +1,9 @@
 import argparse
 import re
 import sys
+from collections import namedtuple
 from pathlib import Path
-from typing import Optional
+from typing import Generator, Optional
 
 from writetight.pattern_questions import pattern_question
 from writetight.nlp import get_language_model, get_matcher
@@ -63,6 +64,27 @@ def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
         return ""
     
 
+def text_to_numbered_lines(text: str) -> list[namedtuple]:
+    """
+    Transforms a raw string of text into a list of namedtuples 
+    with fields number and text. 
+    """
+    text_lines = text.splitlines()
+    TextLine = namedtuple("TextLine", ["number", "line"])
+    output = [TextLine(number, line) for number, line in enumerate(text_lines, start=1)]
+
+    return output
+
+
+def _matches_generator(matches: list) -> Generator[list, None, None]:
+    """
+    Transforms the matches list into a generator to leverage the
+    next() function. This simplifies understanding the main functionality.
+    """
+    for match in matches:
+        yield match
+
+
 def main():
     """
     Better explanation here.
@@ -81,13 +103,12 @@ def main():
     matcher = get_matcher(nlp)
     matches = matcher(doc)
 
-    # Split the raw text into lines to display the line number and column number of each match.
-    # Create a function and a named tuple to transform the clean text to a list with TextLine named tuples
-    # with a number and text field names.
-    text_lines = text_clean.splitlines()
-    text_lines_numbered = [
-        (line_number, line) for line_number, line in enumerate(text_lines)
-    ]
+    text_in_numbered_lines = text_to_numbered_lines(text_clean)
+    matches_generator = _matches_generator(matches)
+
+    
+
+
 
     # The 'matches' object contains a list of matches in ascending order of the text.
     # Therefore the text can be analyzed efficiently line for line until all the matches
@@ -107,6 +128,8 @@ def main():
         match_position = re.search(rf"\b{match}\b", current_line)
         if match_position is not None:
             # Clean this up, abstract the functionality in a function
+            # Or better, separate finding the matches from printing the matches.
+            # That will also make it easier to test.
             print(
                 f"Ln {str(current_line_num + 1).rjust(3)},"
                 f"Col {str(match_position.start() + 1).rjust(3)}: "
