@@ -3,6 +3,7 @@ import re
 import sys
 from collections import namedtuple
 from pathlib import Path
+from string import Template
 from typing import Generator, Optional
 
 from writetight.pattern_questions import pattern_question
@@ -62,12 +63,12 @@ def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
     """
     if match_object.group(0) in ("-", "*"):
         return ""
-    
+
 
 def text_to_numbered_lines(text: str) -> list[namedtuple]:
     """
-    Transforms a raw string of text into a list of namedtuples 
-    with fields number and text. 
+    Transforms a raw string of text into a list of namedtuples
+    with fields number and text.
     """
     text_lines = text.splitlines()
     TextLine = namedtuple("TextLine", ["number", "line"])
@@ -76,13 +77,38 @@ def text_to_numbered_lines(text: str) -> list[namedtuple]:
     return output
 
 
-def _matches_generator(matches: list) -> Generator[list, None, None]:
+def _matches_generator(text_tokens: list, matches: list) -> Generator[list, None, None]:
     """
-    Transforms the matches list into a generator to leverage the
-    next() function. This simplifies understanding the main functionality.
+    Extracts the pattern id and exact match from the matches list and returns
+    a generator to leverage the next() function. The next() function simplifies
+    understanding the main functionality.
     """
+    clean_matches = []
+
     for match in matches:
-        yield match
+        pattern_id, match_start_token, match_end_token = match
+        match = " ".join(text_tokens[match_start_token:match_end_token])
+        clean_matches.append((pattern_id, match))
+
+    for clean_match in clean_matches:
+        yield clean_match
+
+
+def _print_found_matches(found_matches: list[tuple]) -> None:
+    """
+    Prints the found matches in a human readable format.
+    """
+    template_string = "Ln $line_number, Col $col_number: $pattern['$match']"
+    for match in found_matches:
+        pattern, match, numbered_line, match_object = match
+        output = Template(template_string).substitute(
+            pattern=pattern,
+            match=match,
+            line_number=str(numbered_line.number).rjust(3),
+            col_number=str(match_object.start() + 1).rjust(3),
+        )
+
+        print(output)
 
 
 def main():
@@ -104,32 +130,35 @@ def main():
     matches = matcher(doc)
 
     text_in_numbered_lines = text_to_numbered_lines(text_clean)
-    matches_generator = _matches_generator(matches)
+    matches_generator = _matches_generator(text_tokens, matches)
 
-    # *** main functionality *** # 
+    # **** main functionality **** #
 
     current_match = next(matches_generator)
-    current_line_number = 0 # the text_in_numbered_lines is a list which starts at index 0   
-    matches_left = True 
+    current_line_number = 0  # text_in_numbered_lines starts at index 0
+    found_matches = []
+    matches_left = True
 
     while matches_left:
-        pattern_id, match_start_token, match_end_token = current_match
-        # Move the pattern to the print statement where you use it
+        pattern_id, match = current_match
         pattern = nlp.vocab.strings[pattern_id]
-        match = " ".join(text_tokens[match_start_token:match_end_token])
-
-        current_line = text_in_numbered_lines[current_line_number].line 
+        current_line = text_in_numbered_lines[current_line_number].line
 
         found_match = re.search(rf"\b{match}\b", current_line)
         if found_match:
-            print(
-                f"Ln {str(text_in_numbered_lines[current_line_number].number).rjust(3)},"
-                f"Col {str(found_match.start() + 1).rjust(3)}: "
-                f"{pattern}['{match}'], {pattern_question(pattern, match)}"
+            found_matches.append(
+                (
+                    pattern,
+                    match,
+                    text_in_numbered_lines[current_line_number],
+                    found_match,
+                )
             )
             try:
                 current_match = next(matches_generator)
             except StopIteration:
-                matches_left = False 
+                matches_left = False
         else:
             current_line_number += 1
+
+    _print_found_matches(found_matches)
