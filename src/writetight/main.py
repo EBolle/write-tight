@@ -13,7 +13,7 @@ from writetight.nlp import get_language_model, get_matcher
 def get_parser():
     parser = argparse.ArgumentParser(
         prog="write-tight",
-        description="This program validates whether your input text file exists.",
+        description="Write-tight returns suggestions via the command-line on how to improve your writing based on simple patterns.",
     )
     parser.add_argument("path", type=_path_exists, help="path to your text file.")
 
