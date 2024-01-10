@@ -1,5 +1,10 @@
+# pylint: disable=missing-function-docstring
+"""Write-tight - improve your writing with simple rule-based patterns."""
+
+
 import argparse
 import re
+import sys
 from collections import namedtuple
 from pathlib import Path
 from string import Template
@@ -22,20 +27,13 @@ def get_parser():
 
 
 def _path_exists(path: str) -> str:
-    """
-    Return the path string if the path refers to a file.
-    """
     if Path(path).is_file():
         return path
-    else:
-        print(f"Could not find the specified path: {path}.")
-        exit()
+
+    sys.exit(f"Could not find the specified path: {path}.")
 
 
 def get_text_file(path: str) -> str:
-    """
-    Return the text file if the path argument exists.
-    """
     extension = path.rsplit(".")[-1]
     if extension.lower() != "md":
         print(
@@ -59,11 +57,9 @@ def clean_text_file(text: str) -> str:
 
 
 def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
-    """
-    Helper function for clean_text_file().
-    """
-    if match_object.group(0) in ("-", "*"):
+    if match_object.group(0) in ("_", "*"):
         return ""
+    return None
 
 
 def text_to_numbered_lines(text: str) -> list[namedtuple]:
@@ -82,17 +78,17 @@ def get_matches(
     text: str, nlp: Language, matcher: Matcher
 ) -> Generator[list, None, None]:
     """
-    This function tries to find and return the matches of simple writing patterns in the user provided text.
-    To aid the understanding of the main function the matches are returned as a generator. This provides the
-    next(matches) functionality which signals that we exhaust the matches while going through the text.
+    This function tries to find and return the matches of simple writing patterns in the
+    user provided text. To aid the understanding of the main function the matches are returned
+    as a generator. This provides the next(matches) functionality which signals that we
+    exhaust the matches while going through the text.
     """
     doc = nlp(text)
     text_tokens = [token.text for token in doc]
     matches = matcher(doc)
 
     if not matches:
-        print("Did not find any matches.")
-        exit()
+        sys.exit("Did not find any matches.")
 
     clean_matches = []
 
@@ -124,7 +120,7 @@ def _print_found_matches(found_matches: list[tuple]) -> None:
         print(output)
 
 
-def main() -> None:
+def main() -> None: # pylint:disable=too-many-locals
     """
     The goal of this function is to find matches of simple writing patterns in the
     user provided text, and print any match and their location to stdout.
