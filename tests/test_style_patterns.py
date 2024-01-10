@@ -1,3 +1,5 @@
+"""Test style patterns."""
+
 from spacy.matcher import Matcher
 
 from writetight.patterns import (
@@ -10,7 +12,7 @@ from writetight.patterns import (
 
 def get_match(nlp, text, pattern):
     """
-    Boilerplate code for getting the match. This function 
+    Boilerplate code for getting the match. This function
     only returns the first match found.
     """
     doc = nlp(text)
@@ -63,7 +65,7 @@ def test_ly_adverbs(nlp):
 
 def test_passive_voice(nlp):
     """
-    Who are what modified the README.md file? 
+    Who are what modified the README.md file?
     'John Doe modified the README.md file.'
     """
     text = "The README.md file was modified with new content."

@@ -53,11 +53,11 @@ def clean_text_file(text: str) -> str:
     These style operators must be removed since re.search looks for exact matches
     within word boundaries.
     """
-    return re.sub(r"(_|\*)", _replace_markdown_style_operators, text)
+    return re.sub(r"(\_|\*)", _replace_markdown_style_operators, text)
 
 
 def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
-    if match_object.group(0) in ("_", "*"):
+    if match_object.group(0) in ("-", "*"):
         return ""
     return None
 
@@ -107,7 +107,7 @@ def _print_found_matches(found_matches: list[tuple]) -> None:
     """
     Prints the found matches in a human readable format.
     """
-    template_string = "Ln $line_number, Col $col_number: $pattern['$match']"
+    template_string = "Ln $line_number, Col $col_number: $pattern['$match'] $suggestion"
     for match in found_matches:
         pattern, match, numbered_line, match_object = match
         output = Template(template_string).substitute(
@@ -115,6 +115,7 @@ def _print_found_matches(found_matches: list[tuple]) -> None:
             match=match,
             line_number=str(numbered_line.number).rjust(3),
             col_number=str(match_object.start() + 1).rjust(3),
+            suggestion=pattern_question(pattern, match)
         )
 
         print(output)

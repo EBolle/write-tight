@@ -1,6 +1,7 @@
-# Patterns on alphabetical order
+"""Define the rule-based patterns."""
 
 
+# style patterns
 ambiguous_openings = [
     {"TEXT": {"IN": ["It", "There"]}},
     {"LEMMA": "be"},
