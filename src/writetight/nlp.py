@@ -1,3 +1,7 @@
+"""Initialize language model and the matcher object."""
+# pylint: disable=missing-function-docstring
+
+
 import sys
 
 import spacy
@@ -18,10 +22,10 @@ def get_language_model() -> Language:
         nlp = spacy.load("en_core_web_sm")
     except IOError:
         print(
-            f"You need the 'en_core_web_sm' language model from spaCy for write-tight to work.\n"
-            f"Please enter the following command in your terminal with your virtual environment activated: \n"
-            f"python -m spacy download en_core_web_sm\n"
-            f"Check the README for more info."
+            "You need the 'en_core_web_sm' language model from spaCy for write-tight to work.\n"
+            "Please enter the following command with your virtual environment activated: \n"
+            "python -m spacy download en_core_web_sm\n"
+            "Check the README for more info."
         )
         sys.exit(1)
 

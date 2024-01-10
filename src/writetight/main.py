@@ -1,55 +1,171 @@
+# pylint: disable=missing-function-docstring
+"""Write-tight - improve your writing with simple rule-based patterns."""
+
+
+import argparse
 import re
+import sys
+from collections import namedtuple
+from pathlib import Path
+from string import Template
+from typing import Generator, Optional
 
-from writetight.input_validation import (
-    get_text_file,
-    replace_markdown_style_operators,
-)
+from spacy.language import Language
+from spacy.matcher import Matcher
 from writetight.pattern_questions import pattern_question
-from writetight.spacy import get_language_model, get_matcher
+from writetight.nlp import get_language_model, get_matcher
 
 
-def main():
+def get_parser():
+    parser = argparse.ArgumentParser(
+        prog="write-tight",
+        description="Write-tight returns suggestions via the command-line on how to improve your writing based on simple patterns.",
+    )
+    parser.add_argument("path", type=_path_exists, help="path to your text file.")
+
+    return parser
+
+
+def _path_exists(path: str) -> str:
+    if Path(path).is_file():
+        return path
+
+    sys.exit(f"Could not find the specified path: {path}.")
+
+
+def get_text_file(path: str) -> str:
+    extension = path.rsplit(".")[-1]
+    if extension.lower() != "md":
+        print(
+            "Warning: your input file is not recognized as Markdown. "
+            "Write-tight might not function as expected.\n"
+        )
+
+    with open(Path(path), encoding="utf-8") as input_stream:
+        input_file = input_stream.read()
+
+    return input_file
+
+
+def clean_text_file(text: str) -> str:
     """
-    Better explanation here.
+    Markdown adds style operators like _ and * for italicized and bold words.
+    These style operators must be removed since re.search looks for exact matches
+    within word boundaries.
     """
-    # Get the raw text, and remove the markdown stlye operators.
-    text = get_text_file()
-    text_clean = re.sub(r"(_|\*)", replace_markdown_style_operators, text)
+    return re.sub(r"(\_|\*)", _replace_markdown_style_operators, text)
 
-    # Transform the raw text to a spaCy Doc to get the Token objects and matches.
-    nlp = get_language_model()
+
+def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
+    if match_object.group(0) in ("-", "*"):
+        return ""
+    return None
+
+
+def text_to_numbered_lines(text: str) -> list[namedtuple]:
+    """
+    Transforms a raw string of text into a list of namedtuples
+    with fields number and text.
+    """
+    text_lines = text.splitlines()
+    TextLine = namedtuple("TextLine", ["number", "line"])
+    output = [TextLine(number, line) for number, line in enumerate(text_lines, start=1)]
+
+    return output
+
+
+def get_matches(
+    text: str, nlp: Language, matcher: Matcher
+) -> Generator[list, None, None]:
+    """
+    This function tries to find and return the matches of simple writing patterns in the
+    user provided text. To aid the understanding of the main function the matches are returned
+    as a generator. This provides the next(matches) functionality which signals that we
+    exhaust the matches while going through the text.
+    """
     doc = nlp(text)
     text_tokens = [token.text for token in doc]
-    matcher = get_matcher(nlp)
     matches = matcher(doc)
 
-    # Split the raw text into lines to display the line number and column number of each match.
-    text_lines = text_clean.splitlines()
-    text_lines_numbered = [
-        (line_number, line) for line_number, line in enumerate(text_lines)
-    ]
+    if not matches:
+        sys.exit("Did not find any matches.")
 
-    # The 'matches' object contains a list of matches in ascending order of the text.
-    # Therefore the text can be analyzed efficiently line for line until all the matches
-    # are consumed. A new match starts from the beginning of the sentence of the last match
-    # to control for multiple matches in a single sentence.
-    current_match = matches.pop(0)
-    current_line_num = 0
+    clean_matches = []
 
-    while matches:
-        pattern_id, match_start_token, match_end_token = current_match
+    for match in matches:
+        pattern_id, match_start_token, match_end_token = match
         pattern = nlp.vocab.strings[pattern_id]
         match = " ".join(text_tokens[match_start_token:match_end_token])
 
-        current_line = text_lines_numbered[current_line_num][1]
+        clean_matches.append((pattern, match))
 
-        match_position = re.search(rf"\b{match}\b", current_line)
-        if match_position is not None:
-            print(
-                f"Ln {str(current_line_num + 1).rjust(3)},"
-                f"Col {str(match_position.start() + 1).rjust(3)}: "
-                f"{pattern}['{match}'], {pattern_question(pattern, match)}"
+    for clean_match in clean_matches:
+        yield clean_match
+
+
+def _print_found_matches(found_matches: list[tuple]) -> None:
+    """
+    Prints the found matches in a human readable format.
+    """
+    template_string = "Ln $line_number, Col $col_number: $pattern['$match'] $suggestion"
+    for match in found_matches:
+        pattern, match, numbered_line, match_object = match
+        output = Template(template_string).substitute(
+            pattern=pattern,
+            match=match,
+            line_number=str(numbered_line.number).rjust(3),
+            col_number=str(match_object.start() + 1).rjust(3),
+            suggestion=pattern_question(pattern, match)
+        )
+
+        print(output)
+
+
+def main() -> None: # pylint:disable=too-many-locals
+    """
+    The goal of this function is to find matches of simple writing patterns in the
+    user provided text, and print any match and their location to stdout.
+    """
+    # Get and valdiate the input path to the text file
+    parser = get_parser()
+    args = parser.parse_args()
+
+    # Clean the text file and split the text into a list of numbers and lines
+    text = get_text_file(args.path)
+    text_clean = clean_text_file(text)
+    text_in_numbered_lines = text_to_numbered_lines(text_clean)
+
+    # Get the pattern matches of the text, if any
+    nlp = get_language_model()
+    matcher = get_matcher(nlp)
+    matches = get_matches(text_clean, nlp, matcher)
+
+    # **** main functionality **** #
+
+    current_match = next(matches)
+    current_line_number = 0  # text_in_numbered_lines starts at index 0
+    found_matches = []
+    matches_left = True
+
+    while matches_left:
+        pattern, match = current_match
+        current_line = text_in_numbered_lines[current_line_number].line
+
+        found_match = re.search(rf"\b{match}\b", current_line)
+        if found_match:
+            found_matches.append(
+                (
+                    pattern,
+                    match,
+                    text_in_numbered_lines[current_line_number],
+                    found_match,
+                )
             )
-            current_match = matches.pop(0)
+            try:
+                current_match = next(matches)
+            except StopIteration:
+                matches_left = False
         else:
-            current_line_num += 1
+            current_line_number += 1
+
+    _print_found_matches(found_matches)

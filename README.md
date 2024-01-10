@@ -26,10 +26,11 @@ Active voice ensures clarity and achieves greater writing precision by answering
 - &ldquo;The README.md file _was modified_ with new content.&rdquo; -> Passive voice, who or what modified the README.md file?
 - &ldquo;John Doe modified the README.md file with new content.&rdquo; -> This sentence in active voice is more precise.
 
-3. Ambiguous pronouns
+3. Ambiguous Openings
 
-- &ldquo;The weather was great and the food was lovely. _It_ was amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
-- &ldquo;Please read _this_ before you start.&rdquo; -> Please read the README.md file before you start.
+- &ldquo;The weather was great and the food was lovely. _It was_ amazing.&rdquo; -> What was amazing? The weather? the food? Something else?
+
+All the patterns and their details are described in the [tests][patterns-tests].
 
 Both sources provide detailed descriptions on how to detect and handle deadwood patterns. This project translates the descriptions to rule-based matching patterns with the help of [spaCy][spacy], and specifically the [spaCy Matcher][spacy-matcher].
 
@@ -49,23 +50,26 @@ python -m spacy download en_core_web_sm
 
 Please refer to the [spaCy installation page][spacy-usage] in case of any issues.
 
-Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file. Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
+Write-tight provides a command line interface and prints the detected patterns and suggestions on how to improve your text. The only argument you have to provide is the path to your text file.
+
+```
+(venv) writetight <path_to_your_text_file>
+```
 
 ![write-tight cli example][wt-cli-img]
 
-The command line interface allows to stay in your code editor while you write and edit your digital content.
+Although this project is developed with Markdown (`.md`) files in mind, your text file is read as-is, so you are not limited to a certain format.
 
 ## Limitations
 
 Only the English language is supported.
 
-The suggestions are rule based and adhere to a certain style of writing. It is therefore likely that not every edge case will
-be matched, and that you might disagree with the suggestions. However, if you like the rule based approach and the user interface, you
-can easily modify the project to your own writing **style**.
+The suggestions are rule-based which make them easy to use and understand. The downside is that these rules do not cover every edge case, and are limited in the complexity they can handle. Furthermore, the rule-based suggestions adhere to a writing style that you might not like. If that is the case I hope the project is structured well enough so that you can easily modify the existing patterns to a writing style of your liking.
 
 [wt-book]: https://www.amazon.nl/Write-Tight-Exactly-Precision-Power/dp/1402210515
 [udemy]: https://www.udemy.com/course/business-writing-immersion/
+[patterns-tests]: ./tests/test_patterns.py
 [spacy]: https://www.spacy.io
 [spacy-matcher]: https://spacy.io/api/matcher
 [spacy-usage]: https://spacy.io/usage
-[wt-cli-img]: /docs/write-tight-cli.png
+[wt-cli-img]: https://github.com/EBolle/write-tight/blob/main/docs/write-tight-cli.png?raw=true
