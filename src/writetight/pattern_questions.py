@@ -1,3 +1,6 @@
+"""Define questions based on the found pattern and match."""
+
+
 def pattern_question(pattern: str, match: str) -> str:
     """
     Returns a question of which the answer should help the writer to
@@ -16,6 +19,10 @@ def pattern_question(pattern: str, match: str) -> str:
 
 
 def ambiguous_pronouns_question(match: str) -> str:
+    """
+    Returns a different question based on the exact match of the pronoun. 
+    """
     if match == "it":
         return "Does 'it' refer to the previous noun?"
+    # "that", "there", "these", "those", "this"
     return f"{match} what? Is the answer inserted after the pronoun?"

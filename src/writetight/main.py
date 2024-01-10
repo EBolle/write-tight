@@ -1,3 +1,7 @@
+# pylint: disable=missing-function-docstring
+"""Write-tight - improve your writing with simple rule-based patterns."""
+
+
 import argparse
 import re
 import sys
@@ -6,6 +10,8 @@ from pathlib import Path
 from string import Template
 from typing import Generator, Optional
 
+from spacy.language import Language
+from spacy.matcher import Matcher
 from writetight.pattern_questions import pattern_question
 from writetight.nlp import get_language_model, get_matcher
 
@@ -21,20 +27,13 @@ def get_parser():
 
 
 def _path_exists(path: str) -> str:
-    """
-    Return the path string if the path refers to a file.
-    """
     if Path(path).is_file():
         return path
-    else:
-        print(f"Could not find the specified path: {path}.")
-        sys.exit(1)
+
+    sys.exit(f"Could not find the specified path: {path}.")
 
 
 def get_text_file(path: str) -> str:
-    """
-    Return the text file if the path argument exists.
-    """
     extension = path.rsplit(".")[-1]
     if extension.lower() != "md":
         print(
@@ -54,15 +53,13 @@ def clean_text_file(text: str) -> str:
     These style operators must be removed since re.search looks for exact matches
     within word boundaries.
     """
-    return re.sub(r"(_|\*)", _replace_markdown_style_operators, text)
+    return re.sub(r"(\_|\*)", _replace_markdown_style_operators, text)
 
 
 def _replace_markdown_style_operators(match_object: re.Match) -> Optional[str]:
-    """
-    Helper function for clean_text_file().
-    """
     if match_object.group(0) in ("-", "*"):
         return ""
+    return None
 
 
 def text_to_numbered_lines(text: str) -> list[namedtuple]:
@@ -77,18 +74,30 @@ def text_to_numbered_lines(text: str) -> list[namedtuple]:
     return output
 
 
-def _matches_generator(text_tokens: list, matches: list) -> Generator[list, None, None]:
+def get_matches(
+    text: str, nlp: Language, matcher: Matcher
+) -> Generator[list, None, None]:
     """
-    Extracts the pattern id and exact match from the matches list and returns
-    a generator to leverage the next() function. The next() function simplifies
-    understanding the main functionality.
+    This function tries to find and return the matches of simple writing patterns in the
+    user provided text. To aid the understanding of the main function the matches are returned
+    as a generator. This provides the next(matches) functionality which signals that we
+    exhaust the matches while going through the text.
     """
+    doc = nlp(text)
+    text_tokens = [token.text for token in doc]
+    matches = matcher(doc)
+
+    if not matches:
+        sys.exit("Did not find any matches.")
+
     clean_matches = []
 
     for match in matches:
         pattern_id, match_start_token, match_end_token = match
+        pattern = nlp.vocab.strings[pattern_id]
         match = " ".join(text_tokens[match_start_token:match_end_token])
-        clean_matches.append((pattern_id, match))
+
+        clean_matches.append((pattern, match))
 
     for clean_match in clean_matches:
         yield clean_match
@@ -98,7 +107,7 @@ def _print_found_matches(found_matches: list[tuple]) -> None:
     """
     Prints the found matches in a human readable format.
     """
-    template_string = "Ln $line_number, Col $col_number: $pattern['$match']"
+    template_string = "Ln $line_number, Col $col_number: $pattern['$match'] $suggestion"
     for match in found_matches:
         pattern, match, numbered_line, match_object = match
         output = Template(template_string).substitute(
@@ -106,42 +115,40 @@ def _print_found_matches(found_matches: list[tuple]) -> None:
             match=match,
             line_number=str(numbered_line.number).rjust(3),
             col_number=str(match_object.start() + 1).rjust(3),
+            suggestion=pattern_question(pattern, match)
         )
 
         print(output)
 
 
-def main():
+def main() -> None: # pylint:disable=too-many-locals
     """
-    Better explanation here.
+    The goal of this function is to find matches of simple writing patterns in the
+    user provided text, and print any match and their location to stdout.
     """
+    # Get and valdiate the input path to the text file
     parser = get_parser()
     args = parser.parse_args()
 
-    # Get the raw text, and remove the markdown stlye operators.
+    # Clean the text file and split the text into a list of numbers and lines
     text = get_text_file(args.path)
     text_clean = clean_text_file(text)
-
-    # Transform the raw text to a spaCy Doc to get the Token objects and matches.
-    nlp = get_language_model()
-    doc = nlp(text_clean)
-    text_tokens = [token.text for token in doc]
-    matcher = get_matcher(nlp)
-    matches = matcher(doc)
-
     text_in_numbered_lines = text_to_numbered_lines(text_clean)
-    matches_generator = _matches_generator(text_tokens, matches)
+
+    # Get the pattern matches of the text, if any
+    nlp = get_language_model()
+    matcher = get_matcher(nlp)
+    matches = get_matches(text_clean, nlp, matcher)
 
     # **** main functionality **** #
 
-    current_match = next(matches_generator)
+    current_match = next(matches)
     current_line_number = 0  # text_in_numbered_lines starts at index 0
     found_matches = []
     matches_left = True
 
     while matches_left:
-        pattern_id, match = current_match
-        pattern = nlp.vocab.strings[pattern_id]
+        pattern, match = current_match
         current_line = text_in_numbered_lines[current_line_number].line
 
         found_match = re.search(rf"\b{match}\b", current_line)
@@ -155,7 +162,7 @@ def main():
                 )
             )
             try:
-                current_match = next(matches_generator)
+                current_match = next(matches)
             except StopIteration:
                 matches_left = False
         else:
